@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ModalComponent } from './shared/modal/modal.component';
 import { BarChartComponent } from './shared/bar-chart/bar-chart.component';
-import { HeaderModule } from './core/header/header.module';
+import { HeaderModule } from './modules/header/header.module';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';

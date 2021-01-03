@@ -9,10 +9,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
 import { HomeModule } from 'src/app/modules/home/home.module';
+import { HeaderShellComponent } from './header-shell/header-shell.component';
 
 
 @NgModule({
-  declarations: [HeaderComponent],
+  declarations: [HeaderComponent, HeaderShellComponent],
   imports: [
     CommonModule,
     MatToolbarModule,
