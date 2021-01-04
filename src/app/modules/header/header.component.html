@@ -6,7 +6,7 @@
             </button>
             <span class="menu-spacer"></span>
             <div>
-                <a mat-button [routerLink]="'/home'"> New Project </a>
+                <a mat-button (click)="createNewProject()"> New Project </a>
                 <a mat-button [routerLink]="'/personal-communication'">Database</a>
                 <a mat-button [routerLink]="'/project-communication'">Task List</a>
                 <a mat-button [routerLink]="'/project-communication'">Surveying</a>

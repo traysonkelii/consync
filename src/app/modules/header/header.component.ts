@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { getDisplayNav, HomeBaseState } from 'src/app/modules/home/state/home.reducer';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { NewProjectModalComponent, ProjectDialogData } from './components/new-project-modal/new-project-modal.component';
 
 @Component({
   selector: 'app-header',
@@ -9,17 +9,26 @@ import { getDisplayNav, HomeBaseState } from 'src/app/modules/home/state/home.re
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private store: Store<HomeBaseState>) { }
+  constructor(public dialog: MatDialog) { }
 
-  show: boolean = true;
+  @Input() show!: boolean | null;
+  @Output() newProject = new EventEmitter();
 
-  ngOnInit(): void {
-    /**
-     * TODO unsubscribe
-     */
-    this.store.select(getDisplayNav).subscribe(
-      displayNav => this.show = displayNav
-    )
+  ngOnInit(): void { }
+
+  createNewProject(): void {
+
+    const data: ProjectDialogData = { name: '' };
+
+    const dialogConfig: MatDialogConfig = { width: '250px', data };
+
+    const dialogRef = this.dialog.open(
+      NewProjectModalComponent,
+      dialogConfig
+    );
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.newProject.emit(result);
+    });
   }
-
 }

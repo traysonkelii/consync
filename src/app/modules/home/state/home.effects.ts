@@ -15,7 +15,17 @@ export class HomeEffects {
                 mergeMap(() => this.homeService.getProjects().pipe(
                     map(projects => HomeActions.loadProjectsSuccess({projects})) 
                 ))
-            )
+            );
         });
     
+        createProject$ = createEffect(() => {
+            return this.actions$.pipe(
+                ofType(HomeActions.createProject),
+                mergeMap((data) => {
+                    return this.homeService.createProject(data).pipe(
+                        map(project => HomeActions.createProjectSuccess({project}))
+                    )
+                })
+            );
+        });
 }

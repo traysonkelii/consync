@@ -1,8 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { getProjects, HomeBaseState } from './state/home.reducer';
-import * as HomeActions from './state/home.action';
-import { Observable } from 'rxjs';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Project } from 'src/app/services/home.service';
 
 @Component({
@@ -12,25 +8,19 @@ import { Project } from 'src/app/services/home.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private store: Store<HomeBaseState>) { }
+  constructor() { }
 
   showHeader: boolean = true;
-  projects$: Observable<Project[]> | undefined;
 
-  ngOnInit(): void {
-    this.store.dispatch(HomeActions.loadProjects());
-    this.projects$ = this.store.select(getProjects);
+  @Input() projects!: Project[] | null;
+  @Output() hide = new EventEmitter<void>();
+  @Output() update = new EventEmitter<string>();
+
+  ngOnInit(): void { 
+    
   }
 
-  hideNav(): void {
-    this.store.dispatch(HomeActions.toggleNavbar());
-  }
+  hideNav(): void { this.hide.emit(); }
 
-  updatePart(part: string): void {
-    this.store.dispatch(HomeActions.updatePart({ part }));
-  }
-
-  goToProject(projectId: number) {
-    alert("tres");
-  }
+  updatePart(part: string) { this.update.emit(part); }
 }

@@ -1,4 +1,5 @@
 import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
+import { Project } from 'src/app/services/home.service';
 import * as AppState from '../../../state/app.state';
 import * as HomeActions from './home.action';
 
@@ -12,7 +13,7 @@ export interface HomeBaseState extends AppState.State {
 export interface HomeState {
     displayNav: boolean;
     part: string;
-    projects: any;
+    projects: Project[];
     error?: any;
 }
 
@@ -37,6 +38,12 @@ export const homeReducer = createReducer<HomeState>(
             ...state,
             projects: action.projects
         }
+    }),
+    on(HomeActions.createProjectSuccess, (state, action): HomeState => {
+        return {
+            ...state,
+            projects: [...state.projects, action.project]
+        }   
     })
 )
 

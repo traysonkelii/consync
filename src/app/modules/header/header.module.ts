@@ -10,12 +10,16 @@ import { RouterModule } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
 import { HomeModule } from 'src/app/modules/home/home.module';
 import { HeaderShellComponent } from './header-shell/header-shell.component';
-
+import { NewProjectModalComponent } from './components/new-project-modal/new-project-modal.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [HeaderComponent, HeaderShellComponent],
+  declarations: [HeaderComponent, HeaderShellComponent, NewProjectModalComponent],
   imports: [
     CommonModule,
+    FormsModule,
     MatToolbarModule,
     MatIconModule,
     MatToolbarModule,
@@ -24,9 +28,11 @@ import { HeaderShellComponent } from './header-shell/header-shell.component';
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
+    MatDialogModule,
+    MatInputModule,
     HomeModule,
     RouterModule,
   ],
-  exports: [HeaderComponent],
+  exports: [HeaderShellComponent],
 })
 export class HeaderModule { }

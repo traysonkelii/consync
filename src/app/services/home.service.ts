@@ -18,6 +18,14 @@ const fakeData: Project[] = [
   {
     projectId: 3,
     title: 'Layton Community College'
+  },
+  {
+    projectId: 4,
+    title: 'Salt Lake Community College'
+  },
+  {
+    projectId: 5,
+    title: 'Chevron Gas Station'
   }
 ]
 
@@ -32,4 +40,8 @@ export class HomeService {
     return of(fakeData)
   }
 
+  createProject(projectRequest: any): Observable<Project> {
+    const dataFromServer: Project = { title: projectRequest.data.name, projectId: Math.round(Math.random() * 2000) }
+    return of(dataFromServer);
+  }
 }

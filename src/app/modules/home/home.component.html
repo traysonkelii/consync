@@ -3,8 +3,8 @@
 <div (click)="updatePart('part 2')"> Part 2 </div>
 <div (click)="updatePart('part 3')"> Part 3 </div> -->
 <div class="home-container">
-    <div *ngIf="projects$ | async as projects">
-        <mat-grid-list cols="4" rowHeight="250px" gutterSize="25px">
+    <div *ngIf="projects">
+        <mat-grid-list cols="4" rowHeight="200px" gutterSize="25px">
             <mat-grid-tile *ngFor="let project of projects">
                 <mat-card class="card-container">
                     <div>

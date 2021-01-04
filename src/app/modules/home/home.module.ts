@@ -11,9 +11,10 @@ import { EffectsModule } from '@ngrx/effects';
 import { HomeEffects } from './state/home.effects';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { HomeShellComponent } from './home-shell/home-shell.component';
 
 @NgModule({
-  declarations: [HomeComponent],
+  declarations: [HomeComponent, HomeShellComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
