@@ -1,0 +1,5 @@
+<app-home 
+[projects]="projects$ | async"
+(hide)="hideNav()"
+(update)="updatePart($any($event))"
+></app-home>

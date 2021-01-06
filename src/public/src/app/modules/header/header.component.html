@@ -1,0 +1,18 @@
+<div *ngIf="show">
+    <mat-toolbar color="primary">
+        <mat-toolbar-row>
+            <button [routerLink]="'/home'" mat-icon-button>
+                <mat-icon>support</mat-icon>
+            </button>
+            <span class="menu-spacer"></span>
+            <div>
+                <a mat-button (click)="createNewProject()"> New Project </a>
+                <a mat-button [routerLink]="'/personal-communication'">Database</a>
+                <a mat-button [routerLink]="'/project-communication'">Task List</a>
+                <a mat-button [routerLink]="'/project-communication'">Surveying</a>
+                <a mat-button [routerLink]="'/project-communication'">Company</a>
+                <a mat-button [routerLink]="'/project-communication'">Executive Analysis</a>
+            </div>
+        </mat-toolbar-row>
+    </mat-toolbar>
+</div>
