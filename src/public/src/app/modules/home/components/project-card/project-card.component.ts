@@ -11,7 +11,6 @@ export class ProjectCardComponent implements OnInit {
   constructor() { }
 
   @Input() projectData!: ProjectCard;
-  @Input() auth: any;
 
   ngOnInit(): void {
   }

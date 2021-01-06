@@ -6,18 +6,7 @@
     <div *ngIf="projects">
         <mat-grid-list cols="4" rowHeight="200px" gutterSize="25px">
             <mat-grid-tile *ngFor="let project of projects">
-                <mat-card class="card-container">
-                    <div>
-                        <span>
-                            {{project.title}}
-                        </span>
-                    </div>
-                    <div class="button-container">
-                        <button mat-button>
-                            <mat-icon>arrow_right_alt</mat-icon>
-                        </button>
-                    </div>
-                </mat-card>
+                <app-project-card [projectData]="project"></app-project-card>
             </mat-grid-tile>
         </mat-grid-list>
     </div>
