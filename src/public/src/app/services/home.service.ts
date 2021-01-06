@@ -3,7 +3,8 @@ import { Observable, of } from 'rxjs';
 
 export interface Project{
   projectId: number,
-  title: string
+  title: string,
+
 }
 
 const fakeData: Project[] = [

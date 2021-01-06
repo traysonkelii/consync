@@ -12,9 +12,10 @@ import { HomeEffects } from './state/home.effects';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { HomeShellComponent } from './home-shell/home-shell.component';
+import { ProjectCardComponent } from './components/project-card/project-card.component';
 
 @NgModule({
-  declarations: [HomeComponent, HomeShellComponent],
+  declarations: [HomeComponent, HomeShellComponent, ProjectCardComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
