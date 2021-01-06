@@ -5,7 +5,7 @@ const config = require('../services/config');
 
 const logDirectory = path.normalize(
 	path.join(
-		__dirname, '..', '..', '..', config.log.dir
+		__dirname, '..', config.log.dir
 	)
 );
 

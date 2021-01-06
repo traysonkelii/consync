@@ -9,8 +9,6 @@ const logDirectory = path.normalize(
 	path.join(
 		__dirname,
 		'..',
-		'..',
-		'..',
 		config.log.dir
 	)
 );
