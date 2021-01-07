@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const systemMiddleware = require('./middleware/system');
 const routes = require('./routes');
+let db = require('./lib/database/config');
 
 const app = express();
 
