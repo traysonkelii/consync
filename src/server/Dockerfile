@@ -5,7 +5,8 @@ ARG PORT=8001
 EXPOSE ${PORT}
 
 COPY package.json package-lock.json ./
-RUN npm set progress=false && npm config set depth 0 && npm ci --only=prod
+RUN npm install -g nodemon
+RUN npm install
 
 COPY . .
 
