@@ -1,12 +1,25 @@
-const { getProject } = require("../services/databaseService");
+const { getProjectById, getProjects, createProject } = require("../services/databaseService");
 
 module.exports = {};
 
-module.exports.getProject = async (req, res, next) => {
+module.exports.getProjectById = async (req, res, next) => {
 	let projectId = req.params.id;
-	console.log('projectId', projectId);
-	let project = await getProject(projectId);
-	req.result = { project };
+	let project = await getProjectById(projectId);
+	req.result = project;
+	next();
+}
+
+module.exports.getProjects = async (req, res, next) => {
+	let filters = {};
+	let projects = await getProjects(filters);
+	req.result = projects;
+	next();
+}
+
+module.exports.createProject = async (req, res, next) => {
+	let projectObj = req.body;
+	let project = await createProject(projectObj);
+	req.result = project;
 	next();
 }
 

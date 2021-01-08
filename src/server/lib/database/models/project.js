@@ -1,8 +1,7 @@
 let mongoose = require('mongoose');
 
-let projectSchema = mongoose.Schema(
+let ProjectSchema = mongoose.Schema(
 	{
-		_id: String,
 		title: String,
 		description: String
 	}, {
@@ -12,4 +11,4 @@ let projectSchema = mongoose.Schema(
 }
 );
 
-module.exports = mongoose.model('Project', projectSchema);
+module.exports = mongoose.model('Project', ProjectSchema);

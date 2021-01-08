@@ -1,6 +1,5 @@
 .git
 coverage
 node_modules/*
-!node_modules/_project
 .gitignore
 README.md
