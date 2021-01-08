@@ -19,3 +19,7 @@
 {"remote-address":"::ffff:172.23.0.1","time":"2021-01-08T06:57:01.747Z","method":"GET","url":"/project/query","http-version":"1.1","status-code":"200","content-length":"4","user-agent":"PostmanRuntime/7.26.8"}
 {"remote-address":"::ffff:172.23.0.1","time":"2021-01-08T07:07:59.045Z","method":"POST","url":"/project/query","http-version":"1.1","status-code":"200","content-length":"414","user-agent":"PostmanRuntime/7.26.8"}
 {"remote-address":"::ffff:172.23.0.1","time":"2021-01-08T07:19:19.538Z","method":"POST","url":"/project/","http-version":"1.1","status-code":"200","content-length":"66","user-agent":"PostmanRuntime/7.26.8"}
+{"remote-address":"::ffff:172.23.0.1","time":"2021-01-08T07:25:43.794Z","method":"POST","url":"/user/","http-version":"1.1","status-code":"404","content-length":"21","user-agent":"PostmanRuntime/7.26.8"}
+{"remote-address":"::ffff:172.23.0.1","time":"2021-01-08T07:25:51.657Z","method":"POST","url":"/user/","http-version":"1.1","status-code":"404","content-length":"21","user-agent":"PostmanRuntime/7.26.8"}
+{"remote-address":"::ffff:172.23.0.1","time":"2021-01-08T07:28:12.930Z","method":"POST","url":"/user/","http-version":"1.1","status-code":"500","content-length":"108","user-agent":"PostmanRuntime/7.26.8"}
+{"remote-address":"::ffff:172.23.0.1","time":"2021-01-08T07:30:12.680Z","method":"POST","url":"/user/","http-version":"1.1","status-code":"500","content-length":"108","user-agent":"PostmanRuntime/7.26.8"}

@@ -19,6 +19,12 @@ databaseService.createProject = async (projectObj) => {
 	return projectObj;
 }
 
+databaseService.createUser = async (userObj) => {
+	const user = new User(userObj);
+	await user.save();
+	return userObj;
+}
+
 databaseService.getUserById = async (userId) => {
 	let user = await User.findById(userId).exec();
 	return user;
