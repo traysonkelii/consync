@@ -1,6 +1,4 @@
 const mongoose = require('mongoose');
-let username = 'root';
-let password = 'example123';
 let host = 'consync-mongodb';
 let mongoUrl = `mongodb://${host}:27017/consync`;
 
