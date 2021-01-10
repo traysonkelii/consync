@@ -1,4 +1,11 @@
+import { domain, clientId } from 'auth.json';
+
 export const environment = {
   production: true,
-  baseUrl: '/'
+  baseUrl: '/',
+  auth: {
+    domain,
+    clientId,
+    redirectUri: window.location.origin,
+  },
 };
