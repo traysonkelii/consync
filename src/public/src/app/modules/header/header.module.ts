@@ -14,6 +14,8 @@ import { NewProjectModalComponent } from './components/new-project-modal/new-pro
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { AuthenticationModule } from '../authentication/authentication.module';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [HeaderComponent, HeaderShellComponent, NewProjectModalComponent],
@@ -22,16 +24,16 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     MatToolbarModule,
     MatIconModule,
-    MatToolbarModule,
     MatSidenavModule,
     MatListModule,
     MatButtonModule,
-    MatIconModule,
     MatMenuModule,
     MatDialogModule,
     MatInputModule,
     HomeModule,
     RouterModule,
+    AuthenticationModule,
+    MatFormFieldModule,
   ],
   exports: [HeaderShellComponent],
 })

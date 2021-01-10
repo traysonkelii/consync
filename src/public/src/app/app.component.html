@@ -1,2 +1,15 @@
-<app-header-shell></app-header-shell>
-<router-outlet></router-outlet>
+<div id="app" class="d-flex flex-column h-100">
+    <app-header-shell></app-header-shell>
+    <div class="container" *ngIf="auth.isLoading$ | async; else loaded">
+        <app-loading-page></app-loading-page>
+    </div>
+  
+    <ng-template #loaded>
+      <div class="container flex-grow-1">
+        <div class="mt-5">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+      </ng-template>
+
+  </div>
