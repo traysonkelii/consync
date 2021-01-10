@@ -4,7 +4,7 @@
 <div (click)="updatePart('part 3')"> Part 3 </div> -->
 <div class="home-container">
     <div *ngIf="projects">
-        <mat-grid-list cols="4" rowHeight="200px" gutterSize="25px">
+        <mat-grid-list cols="4" rowHeight="500px" gutterSize="20px">
             <mat-grid-tile *ngFor="let project of projects">
                 <app-project-card [projectData]="project"></app-project-card>
             </mat-grid-tile>

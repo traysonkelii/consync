@@ -1,0 +1,12 @@
+@import '~@angular/material/theming';
+
+.clickable {
+  cursor: pointer;
+  &:hover {
+    @include mat-elevation(3);
+  }
+  width: 250px;
+  max-height: 400px;
+  overflow: scroll;
+  border-radius: 20px;
+}
