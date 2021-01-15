@@ -1,4 +1,11 @@
 const user = require('../../middleware/user');
+const auth = require('../../middleware/auth')
+
+module.exports.getUser = [
+	auth.secure,
+	user.getUser,
+	user.return
+]
 
 module.exports.createUser = [
 	user.createUser,

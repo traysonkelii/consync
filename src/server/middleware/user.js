@@ -2,6 +2,11 @@ const { getUserById, getUsers, createUser } = require("../services/databaseServi
 
 module.exports = {};
 
+module.exports.getUser = (req, res, next) => {
+	req.result = req.user;
+	next();
+}
+
 module.exports.getUserById = async (req, res, next) => {
 	let error;
 	try {

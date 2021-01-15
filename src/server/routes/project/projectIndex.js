@@ -3,7 +3,7 @@ const router = express.Router();
 const projectController = require('./projectController');
 
 router.route('/')
-	.post(projectController.createProject);
+	.post(projectController.createProject)
 
 router.route('/:id')
 	.get(projectController.getProject)
