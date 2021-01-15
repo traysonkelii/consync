@@ -1,13 +1,10 @@
-<!-- <button (click)="hideNav()"> Hide nav </button>
-<div (click)="updatePart('part 1')"> Part 1 </div>
-<div (click)="updatePart('part 2')"> Part 2 </div>
-<div (click)="updatePart('part 3')"> Part 3 </div> -->
 <div class="home-container">
-    <div *ngIf="projects">
-        <mat-grid-list cols="4" rowHeight="200px" gutterSize="25px">
-            <mat-grid-tile *ngFor="let project of projects">
+    <h1>Projects</h1>
+    <div class="project-container">
+        <div *ngIf="projects">
+            <div *ngFor="let project of projects">
                 <app-project-card [projectData]="project"></app-project-card>
-            </mat-grid-tile>
-        </mat-grid-list>
+            </div>
+        </div>
     </div>
 </div>

@@ -1,47 +1,34 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
-export interface Project{
+export interface Project {
   projectId: number,
   title: string,
-
+  inCourtItems?: number;
+  averageResponseTime?: number;
+  globalAverageResponseTime?: number;
+  numberOfOpenItems?: number;
+  itemsInGeneralContractorsCourt?: number;
+  imageUrl?: string;
 }
-
-const fakeData: Project[] = [
-  {
-    projectId: 1,
-    title: 'Project One'
-  },
-  {
-    projectId: 2,
-    title: 'Bob Builders'
-  },
-  {
-    projectId: 3,
-    title: 'Layton Community College'
-  },
-  {
-    projectId: 4,
-    title: 'Salt Lake Community College'
-  },
-  {
-    projectId: 5,
-    title: 'Chevron Gas Station'
-  }
-]
 
 @Injectable({
   providedIn: 'root'
 })
 export class HomeService {
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
+
   
-  getProjects(): Observable<Project[]>{
-    return of(fakeData)
+
+  getProjects(): Observable<any> {
+    return this.http.post(`${environment.baseUrl}/project/query`,{});
   }
 
   createProject(projectRequest: any): Observable<Project> {
+    
     const dataFromServer: Project = { title: projectRequest.data.name, projectId: Math.round(Math.random() * 2000) }
     return of(dataFromServer);
   }
