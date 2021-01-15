@@ -1,7 +1,8 @@
 <mat-card class="clickable" (click)="test()">
     <mat-card-header>
         <mat-card-title>{{projectData.title}}</mat-card-title>
-        <mat-card-subtitle>Ball in court items: {{projectData.inCourtItems}}</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image src="{{projectData.imageUrl}}" alt="Workspace image">
+    <mat-card-content>
+        <p>Ball in court items: {{projectData.inCourtItems}}</p>
+      </mat-card-content>
 </mat-card>

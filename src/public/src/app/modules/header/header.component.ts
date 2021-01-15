@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { AuthService } from '@auth0/auth0-angular';
 import { NewProjectModalComponent, ProjectDialogData } from './components/new-project-modal/new-project-modal.component';
 
 @Component({
@@ -10,8 +9,7 @@ import { NewProjectModalComponent, ProjectDialogData } from './components/new-pr
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public dialog: MatDialog,
-    public auth: AuthService) { }
+  constructor(public dialog: MatDialog) { }
 
   @Input() show!: boolean | null;
   @Output() newProject = new EventEmitter();
