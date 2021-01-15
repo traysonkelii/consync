@@ -12,7 +12,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { AuthModule } from '@auth0/auth0-angular';
 import { LoadingPageComponent } from './components/loading-page/loading-page.component';
 import { LoginComponent } from './components/login/login.component';
 
@@ -37,9 +36,6 @@ import { LoginComponent } from './components/login/login.component';
       logOnly: environment.production
     }),
     EffectsModule.forRoot([]),
-    AuthModule.forRoot({
-      ...environment.auth
-    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

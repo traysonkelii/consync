@@ -7,6 +7,22 @@ let db = require('./lib/database/config');
 
 const app = express();
 
+var allowCrossDomain = function (req, res, next) {
+    
+    if (req.headers.origin.indexOf('http://localhost') === 0) // dev
+    {
+        res.header('Access-Control-Allow-Origin', req.headers.origin);
+        res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, OPTIONS');
+        res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+        res.header('Access-Control-Allow-Credentials', true);
+    }
+    if (req.method === 'OPTIONS') {
+        return res.status(200).end();
+    }
+    next();
+};
+app.use(allowCrossDomain);
+
 app.use(helmet()); // Provides some xss protections and hides headers from the client
 app.use(systemMiddleware.requestLogging);
 

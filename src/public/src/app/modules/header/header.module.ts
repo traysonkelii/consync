@@ -14,7 +14,6 @@ import { NewProjectModalComponent } from './components/new-project-modal/new-pro
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
-import { AuthenticationModule } from '../authentication/authentication.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
@@ -32,7 +31,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatInputModule,
     HomeModule,
     RouterModule,
-    AuthenticationModule,
     MatFormFieldModule,
   ],
   exports: [HeaderShellComponent],

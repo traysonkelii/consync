@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 export interface Project {
   projectId: number,
@@ -12,68 +14,17 @@ export interface Project {
   imageUrl?: string;
 }
 
-const fakeData: Project[] = [
-  {
-    projectId: 1,
-    title: 'Project One',
-    inCourtItems: 4,
-    averageResponseTime: 2.4,
-    globalAverageResponseTime: 3.6,
-    numberOfOpenItems: 12,
-    itemsInGeneralContractorsCourt: 5,
-    imageUrl: "https://picsum.photos/id/232/200/300"
-  },
-  {
-    projectId: 1,
-    title: 'Project Two',
-    inCourtItems: 4,
-    averageResponseTime: 2.4,
-    globalAverageResponseTime: 3.6,
-    numberOfOpenItems: 12,
-    itemsInGeneralContractorsCourt: 5,
-    imageUrl: "https://picsum.photos/id/236/200/300"
-  },
-  {
-    projectId: 1,
-    title: 'Project Three',
-    inCourtItems: 4,
-    averageResponseTime: 2.4,
-    globalAverageResponseTime: 3.6,
-    numberOfOpenItems: 12,
-    itemsInGeneralContractorsCourt: 5,
-    imageUrl: "https://picsum.photos/id/235/200/300"
-  },
-  {
-    projectId: 1,
-    title: 'Project Four',
-    inCourtItems: 4,
-    averageResponseTime: 2.4,
-    globalAverageResponseTime: 3.6,
-    numberOfOpenItems: 12,
-    itemsInGeneralContractorsCourt: 5,
-    imageUrl: "https://picsum.photos/id/234/200/300"
-  },
-  {
-    projectId: 1,
-    title: 'Project Five',
-    inCourtItems: 4,
-    averageResponseTime: 2.4,
-    globalAverageResponseTime: 3.6,
-    numberOfOpenItems: 12,
-    itemsInGeneralContractorsCourt: 5,
-    imageUrl: "https://picsum.photos/id/233/200/300"
-  }
-]
-
 @Injectable({
   providedIn: 'root'
 })
 export class HomeService {
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
 
-  getProjects(): Observable<Project[]> {
-    return of(fakeData)
+  
+
+  getProjects(): Observable<any> {
+    return this.http.post(`${environment.baseUrl}/project/query`,{});
   }
 
   createProject(projectRequest: any): Observable<Project> {
