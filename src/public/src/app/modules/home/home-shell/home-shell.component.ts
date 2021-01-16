@@ -17,7 +17,7 @@ export class HomeShellComponent implements OnInit {
 
   ngOnInit(): void {
     this.projects$ = this.store.select(getProjects);
-    this.store.dispatch(HomeActions.loadProjects());
+    // this.store.dispatch(HomeActions.loadProjects());
   }
 
   hideNav(): void {

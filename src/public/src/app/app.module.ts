@@ -13,7 +13,6 @@ import { environment } from '../environments/environment';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { LoadingPageComponent } from './components/loading-page/loading-page.component';
-import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +20,6 @@ import { LoginComponent } from './components/login/login.component';
     ModalComponent,
     BarChartComponent,
     LoadingPageComponent,
-    LoginComponent,
   ],
   imports: [
     BrowserModule,
