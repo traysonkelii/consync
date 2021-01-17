@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Project } from 'src/app/services/home.service';
@@ -17,7 +17,7 @@ export class HomeShellComponent implements OnInit {
 
   ngOnInit(): void {
     this.projects$ = this.store.select(getProjects);
-    // this.store.dispatch(HomeActions.loadProjects());
+    this.store.dispatch(HomeActions.loadProjects());
   }
 
   hideNav(): void {
