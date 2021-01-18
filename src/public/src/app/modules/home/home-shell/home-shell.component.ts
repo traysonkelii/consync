@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Project } from 'src/app/services/home.service';
+import { Project } from '@services/home.service';
 import { getProjects, HomeBaseState } from '../state/home.reducer';
 import * as HomeActions from '../state/home.action';
 

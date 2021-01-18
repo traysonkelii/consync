@@ -1,5 +1,5 @@
 import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
-import { Project } from 'src/app/services/home.service';
+import { Project } from '@services/home.service';
 import * as AppState from '../../../state/app.state';
 import * as HomeActions from './home.action';
 

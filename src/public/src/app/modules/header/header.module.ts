@@ -8,7 +8,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
-import { HomeModule } from 'src/app/modules/home/home.module';
+import { HomeModule } from '@modules/home/home.module';
 import { HeaderShellComponent } from './header-shell/header-shell.component';
 import { NewProjectModalComponent } from './components/new-project-modal/new-project-modal.component';
 import { MatDialogModule } from '@angular/material/dialog';

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { LoginService } from 'src/app/services/login.service';
+import { LoginService } from '@services/login.service';
 import * as LoginActions from './login.action';
 import { map, mergeMap } from 'rxjs/operators';
 
