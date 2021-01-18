@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { HomeService } from 'src/app/services/home.service';
+import { HomeService } from '@services/home.service';
 import * as HomeActions from './home.action';
 import { map, mergeMap } from 'rxjs/operators';
 

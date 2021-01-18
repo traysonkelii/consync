@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Project } from 'src/app/services/home.service';
+import { Project } from '@services/home.service';
 
 export const toggleNavbar = createAction('[Home] toggle header');
 export const updatePart = createAction('[Home] update part', props<{ part: string }>());
