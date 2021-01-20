@@ -15,7 +15,7 @@ const app = express();
 
 var allowCrossDomain = function (req, res, next) {
     
-    if (req.headers.origin.indexOf('http://localhost') === 0) // dev
+    if (req.headers && req.headers.origin && req.headers.origin.indexOf('http://localhost') === 0) // dev
     {
         res.header('Access-Control-Allow-Origin', req.headers.origin);
         res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, OPTIONS');

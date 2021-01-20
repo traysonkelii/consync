@@ -20,7 +20,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-consync",
+            "baseHref": "/angular-consync/",
+            "deployUrl": "/angular-consync/",
+            "outputPath": "../server/dist/angular-consync",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
