@@ -20,6 +20,9 @@ router.get('/callback', function (req, res, next) {
 	passport.authenticate('auth0', function (err, user, info) {
 		if (err) { return next(err); }
 		if (!user) { return res.redirect('/login'); }
+		//get user from mongodb
+		//if there is no user create one
+		//login with the mongo user
 		req.logIn(user, function (err) {
 			if (err) { return next(err); }
 			const returnTo = req.session.returnTo;

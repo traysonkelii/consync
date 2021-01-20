@@ -14,8 +14,8 @@ dotenv.config();
 const app = express();
 
 var allowCrossDomain = function (req, res, next) {
-    
-    if (req.headers.origin.indexOf('http://localhost') === 0) // dev
+
+    if (req.headers && req.headers.origin && req.headers.origin.indexOf('http://localhost') === 0) // dev
     {
         res.header('Access-Control-Allow-Origin', req.headers.origin);
         res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, OPTIONS');
@@ -37,12 +37,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 sessionOptions = {
-	secret: 'keyboard cat',
-	resave: false,
-	saveUninitialized: false
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false
 }
 if (process.env.NODE_ENV === 'production') {
-	sessionOptions.cookie.secure = true;
+    sessionOptions.cookie.secure = true;
 }
 app.use(session(sessionOptions));
 app.use(passport.initialize());
