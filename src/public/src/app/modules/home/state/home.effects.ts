@@ -28,4 +28,15 @@ export class HomeEffects {
                 })
             );
         });
+
+        getUser$ = createEffect(() => {
+            return this.actions$.pipe(
+                ofType(HomeActions.getUser),
+                mergeMap((data) => {
+                    return this.homeService.getUser().pipe(
+                        map(user => HomeActions.getUserSuccess({user}))
+                    )
+                })
+            );
+        });
 }

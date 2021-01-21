@@ -12,7 +12,7 @@ WORKDIR /app
 COPY /public .
 
 ## Build the angular app in production mode and store the artifacts in dist folder
-RUN npm run build -- --prod --output-path=dist
+RUN npm run build -- --prod --aot --outputHashing=all --output-path=dist
 
 ### STAGE 2: Setup ###
 FROM node 
@@ -30,4 +30,4 @@ COPY --from=builder /app/dist /app/public
 ## expose port for express
 EXPOSE 8001
 
-CMD ["node",  "./bin/run.js"]
+CMD ["node",  "./server/bin/run.js"]

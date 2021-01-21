@@ -20,8 +20,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "baseHref": "/angular-consync/",
-            "deployUrl": "/angular-consync/",
             "outputPath": "../server/dist/angular-consync",
             "index": "src/index.html",
             "main": "src/main.ts",
