@@ -8,13 +8,10 @@ router.use('/healthcheck', require('./healthcheck'));
 router.use('/project', require('./project/projectIndex'));
 router.use('/user', require('./user/userIndex'));
 
+
 router.get('*.*', express.static(root, { maxAge: '1y' }));
 router.all('*', function (req, res) {
 	res.status(200).sendFile(`/`, { root: root });
-});
-
-router.get('*', function (req, res, next) {
-	res.sendFile(root, { maxAge: '1y' });
 });
 
 module.exports = router;
