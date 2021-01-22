@@ -40,4 +40,4 @@ COPY --from=builder public/dist /app/public
 ## expose port for express
 EXPOSE 8001
 
-CMD ["nodemon",  "./server/bin/run.js"]`
+CMD ["nodemon",  "./server/bin/run.js"]
