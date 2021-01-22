@@ -1,33 +1,43 @@
+FROM node as front_end_modules
+COPY public/package.json public/package-lock.json ./
+RUN npm i
+
 ### STAGE 1: Build ###
 # We label our stage as ‘builder’
+
 FROM node as builder
 
-COPY public/package.json public/package-lock.json ./
+COPY /public ./public
 
-## Storing node modules on a separate layer will prevent unnecessary npm installs at each build
-RUN npm i && mkdir /ng-app && mv ./node_modules ./app
+WORKDIR /public
 
-WORKDIR /app
+COPY --from=front_end_modules node_modules ./node_modules
 
-COPY /public .
+RUN npm install -g @angular/cli
 
-## Build the angular app in production mode and store the artifacts in dist folder
-RUN npm run build -- --prod --aot --outputHashing=all --output-path=dist
+# Build the angular app in production mode and store the artifacts in dist folder
+RUN npm run build --prod --aot --outputHashing=all --output-path=dist
+
+FROM node as server_modules
+COPY server/package.json server/package-lock.json ./
+RUN npm i
 
 ### STAGE 2: Setup ###
-FROM node 
+FROM node
 
 ## channge directory
 WORKDIR /app
 
+COPY --from=server_modules node_modules /node_modules
+
 #COPY api code to app folder
 COPY server/ /app/
 
-RUN npm i
+RUN npm i -g nodemon
 
 ## From ‘builder’ copy published angular bundles in app/public
-COPY --from=builder /app/dist /app/public
+COPY --from=builder public/dist /app/public
 ## expose port for express
 EXPOSE 8001
 
-CMD ["node",  "./server/bin/run.js"]
+CMD ["nodemon",  "./server/bin/run.js"]`
