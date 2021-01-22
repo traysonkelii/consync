@@ -1,4 +1,5 @@
 const express = require('express');
+const router = express.Router();
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
@@ -48,6 +49,12 @@ app.use(session(sessionOptions));
 app.use(passport.initialize());
 app.use(passport.session());
 var initPassport = require('./lib/passport/config.js');
+app.use(router.use('/', require('./routes/auth/auth')));
+app.use(function (req, res, next) {
+    if (req.user) { return next(); }
+	req.session.returnTo = req.originalUrl;
+	res.redirect('/login');
+});
 app.use('/', routes);
 
 app.use(systemMiddleware.notFoundHandler);

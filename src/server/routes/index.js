@@ -3,7 +3,6 @@ const router = express.Router();
 var path = require('path');
 
 const root = path.join(__dirname, '..', '..', '..', 'app/public');
-router.use('/', require('./auth/auth'))
 router.use('/healthcheck', require('./healthcheck'));
 router.use('/project', require('./project/projectIndex'));
 router.use('/user', require('./user/userIndex'));
