@@ -1,6 +1,8 @@
 const Project = require('../lib/database/models/project');
 const User = require('../lib/database/models/user');
 const Role = require('../lib/database/models/role');
+const Project = require('../lib/database/models/project');
+const project = require('../lib/database/models/project');
 
 let databaseService = {};
 
@@ -50,6 +52,31 @@ databaseService.getPermissionsForRoles = async (roles) => {
 databaseService.getUsers = async (filter = {}) => {
 	let users = await User.find(filter).exec();
 	return users;
+}
+
+databaseService.archiveProject = async (projectId) => {
+	let project = await Project.findByIdAndUpdate(projectId, {status: 'Archived'}).exec();
+	return project;
+}
+
+databaseService.addUserToProject = async (projectId, userIds) => {
+	let project = await Project.findByIdAndUpdate(projectId, {$addToSet: {users: {$each: userIds}}})
+	return project;
+}
+
+databaseService.updateProjectStatus = async (projectId, status) => {
+	let project = await Project.findByIdAndUpdate(projectId, {status: status})
+	return project;
+}
+
+databaseService.removeUserFromProject = async (projectId, userId) => {
+	let project = await Project.findByIdAndUpdate(projectId, {$pull: {users: userId}});
+	return project;
+}
+
+databaseService.updateProject = async (projectId, fieldsToUpdate) => {
+	let project = await Project.findByIdAndUpdate(projectId, {$set: fieldsToUpdate});
+	return project;
 }
 
 module.exports = databaseService;

@@ -4,8 +4,8 @@ let UserSchema = mongoose.Schema(
 	{
 		companyID: String,
 		cusomterID: String,
-		username: { type: String, required: 'username is a required field', unique: true },
-		email: { type: String, required: 'email is a required field', unique: true },
+		username: { type: String, required: 'username is a required field and must be unique', unique: true },
+		email: { type: String, required: 'email is a required field and must be unique', unique: true },
 		firstName: String,
 		lastName: String,
 		userRoles: Array
