@@ -13,6 +13,8 @@ import { environment } from '../environments/environment';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { LoadingPageComponent } from './components/loading-page/loading-page.component';
+import { rootReducer } from './state/app.reducer';
+import { RootEffects } from './state/app.effects';
 
 @NgModule({
   declarations: [
@@ -27,15 +29,15 @@ import { LoadingPageComponent } from './components/loading-page/loading-page.com
     BrowserAnimationsModule,
     HeaderModule,
     HttpClientModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({'root': rootReducer}, {}),
     StoreDevtoolsModule.instrument({
       name: 'Consync',
       maxAge: 25,
       logOnly: environment.production
     }),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([RootEffects]),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

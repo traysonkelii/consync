@@ -9,5 +9,3 @@ export const loadProjectsFailure = createAction('[Home] load projects failure', 
 export const createProject = createAction('[Home] create project', props<{ data: any }>());
 export const createProjectSuccess = createAction('[Home] create project success', props<{ project: Project }>());
 export const createProjectError = createAction('[Home] create project failure', props<{ error: any }>());
-export const getUser = createAction('[Home] get User');
-export const getUserSuccess = createAction('[Home] get User Success', props<{user: any}>());

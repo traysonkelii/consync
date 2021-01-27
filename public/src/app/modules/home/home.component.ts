@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Project } from '@services/home.service';
+import { User } from 'app/state/app.state';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +14,7 @@ export class HomeComponent implements OnInit {
   showHeader: boolean = true;
 
   @Input() projects!: Project[] | null;
+  @Input() user!: User | undefined | null;
   @Output() hide = new EventEmitter<void>();
   @Output() update = new EventEmitter<string>();
 

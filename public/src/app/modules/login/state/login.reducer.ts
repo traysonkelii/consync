@@ -9,30 +9,19 @@ export interface LoginBaseState {
 }
 
 export interface LoginState {
-    isLoggedIn: boolean
+
 }
 
-const initialState: LoginState = { isLoggedIn: false };
+const initialState: LoginState = { };
 
 export const loginReducer = createReducer<LoginState>(
     initialState,
     on(LoginActions.loginSuccess, (state): LoginState => {
         return {
-            ...state,
-            isLoggedIn: true
         }
     }),
     on(LoginActions.loginFailure, (state, action): LoginState => {
         return {
-            ...state,
-            isLoggedIn: false
         }
     }),
 )
-
-const getLoginFeatureState = createFeatureSelector<LoginState>('login');
-
-export const getLogin = createSelector(
-    getLoginFeatureState,
-    state => state.isLoggedIn
-);
