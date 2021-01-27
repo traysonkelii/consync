@@ -30,7 +30,7 @@ export interface BusinessData {
 
 export enum Permissions {
     createProject = 'Create Project',
-    createUser = 'createUser',
+    createUser = 'Create User',
     procoreApi = 'Procore API',
     removeColaborator = 'Remove Colaborator',
     remindAnyone = 'Remind Anyone',
