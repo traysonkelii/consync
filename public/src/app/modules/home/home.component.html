@@ -14,7 +14,7 @@
         </div>
         <div *ngIf="projects">
             <div *ngFor="let project of projects">
-                <app-project-card [projectData]="project"></app-project-card>
+                <app-project-card [projectData]="project" [role]="user!.data!.userRoles[0]"></app-project-card>
             </div>
         </div>
     </div>

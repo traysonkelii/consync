@@ -4,7 +4,8 @@ import { Observable } from 'rxjs';
 import { getDisplayNav, HomeBaseState } from '../../home/state/home.reducer';
 import { ProjectDialogData } from '../components/new-project-modal/new-project-modal.component';
 import * as HomeActions from '../../home/state/home.action';
-import { LoginBaseState } from '../../login/state/login.reducer';
+import { User } from 'app/state/app.state';
+import { getUser } from 'app/state/app.reducer';
 
 @Component({
   selector: 'app-header-shell',
@@ -14,13 +15,14 @@ export class HeaderShellComponent implements OnInit {
 
   constructor(
     private homeStore: Store<HomeBaseState>,
-    private loginStore: Store<LoginBaseState>
   ) { }
 
   displayNav$!: Observable<boolean>;
+  user$!: Observable<User | undefined>;
 
   ngOnInit(): void {
     this.displayNav$ = this.homeStore.select(getDisplayNav);
+    this.user$ = this.homeStore.select(getUser);
   }
 
   createNewProject(data: ProjectDialogData): void {
