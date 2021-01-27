@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { getLogin, LoginBaseState } from '../modules/login/state/login.reducer';
+import { LoginBaseState } from '../modules/login/state/login.reducer';
 // import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
@@ -17,13 +17,9 @@ export class AuthService {
   //   return !this.jwtHelper.isTokenExpired(token);
   // }
 
-  constructor(private store:Store<LoginBaseState>) {}
-  
+  constructor(private store: Store<LoginBaseState>) { }
+
   public isAuthenticated(): boolean {
-    let loggedIn = false;
-    this.store.pipe(select(getLogin)).subscribe(val => {
-      loggedIn = val;
-    });
-    return loggedIn;
+    return true;
   }
 }

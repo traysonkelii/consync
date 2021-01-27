@@ -12,7 +12,6 @@ export class HeaderComponent implements OnInit {
   constructor(public dialog: MatDialog) { }
 
   @Input() show!: boolean | null;
-  @Input() isLoggedIn!: boolean | null;
   @Output() newProject = new EventEmitter();
 
   ngOnInit(): void { }
