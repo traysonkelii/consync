@@ -26,9 +26,8 @@
       "@services/*": ["app/services/*"],
       "@guards/*": ["app/guard/*"],
       "@modules/*": ["app/modules/*"],
-      "@environments/*": ["environments/*"],
-      "@assets/*": ["app/assets/*"],
-      "@mocks/*": ["mocks/*"]
+      "@environments/*": ["app/environments/*"],
+      "@assets/*": ["app/assets/*"]
     }
   },
   "angularCompilerOptions": {

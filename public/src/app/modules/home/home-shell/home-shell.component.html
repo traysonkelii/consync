@@ -1,6 +1,5 @@
 <app-home 
 [projects]="projects$ | async"
-[user]="user$ | async"
 (hide)="hideNav()"
 (update)="updatePart($any($event))"
 ></app-home>

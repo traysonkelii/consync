@@ -8,24 +8,35 @@ import { map, mergeMap } from 'rxjs/operators';
 export class HomeEffects {
     constructor(private actions$: Actions,
         private homeService: HomeService) { }
+    
+        loadProjects$ = createEffect(() => {
+            return this.actions$.pipe(
+                ofType(HomeActions.loadProjects),
+                mergeMap(() => this.homeService.getProjects().pipe(
+                    map(projects => HomeActions.loadProjectsSuccess({projects})) 
+                ))
+            );
+        });
+    
+        createProject$ = createEffect(() => {
+            return this.actions$.pipe(
+                ofType(HomeActions.createProject),
+                mergeMap((data) => {
+                    return this.homeService.createProject(data).pipe(
+                        map(project => HomeActions.createProjectSuccess({project}))
+                    )
+                })
+            );
+        });
 
-    loadProjects$ = createEffect(() => {
-        return this.actions$.pipe(
-            ofType(HomeActions.loadProjects),
-            mergeMap(() => this.homeService.getProjects().pipe(
-                map(projects => HomeActions.loadProjectsSuccess({ projects }))
-            ))
-        );
-    });
-
-    createProject$ = createEffect(() => {
-        return this.actions$.pipe(
-            ofType(HomeActions.createProject),
-            mergeMap((data) => {
-                return this.homeService.createProject(data).pipe(
-                    map(project => HomeActions.createProjectSuccess({ project }))
-                )
-            })
-        );
-    });
+        getUser$ = createEffect(() => {
+            return this.actions$.pipe(
+                ofType(HomeActions.getUser),
+                mergeMap((data) => {
+                    return this.homeService.getUser().pipe(
+                        map(user => HomeActions.getUserSuccess({user}))
+                    )
+                })
+            );
+        });
 }

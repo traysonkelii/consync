@@ -1,20 +1,9 @@
 <div class="home-container">
     <h1>Projects</h1>
     <div class="project-container">
-        <div *ngIf="user">
-            <p>
-                Logged in: {{ user.data.firstName }} {{ user.data.lastName}}
-            </p>
-            <p *ngFor="let role of user.data.userRoles">
-                Role: {{role}}
-            </p>
-            <p>
-                Permissions: <span *ngFor="let permission of user.permissions"> {{permission}} | </span>
-            </p>
-        </div>
         <div *ngIf="projects">
             <div *ngFor="let project of projects">
-                <app-project-card [projectData]="project" [role]="user!.data!.userRoles[0]"></app-project-card>
+                <app-project-card [projectData]="project"></app-project-card>
             </div>
         </div>
     </div>

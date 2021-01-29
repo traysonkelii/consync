@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { Permissions, User } from 'app/state/app.state';
 import { NewProjectModalComponent, ProjectDialogData } from './components/new-project-modal/new-project-modal.component';
 
 @Component({
@@ -13,18 +12,10 @@ export class HeaderComponent implements OnInit {
   constructor(public dialog: MatDialog) { }
 
   @Input() show!: boolean | null;
-  @Input() user!: User | undefined | null;
+  @Input() isLoggedIn!: boolean | null;
   @Output() newProject = new EventEmitter();
-  permissions = Permissions;
-  canCreate = false;
 
-  ngOnInit(): void {
-    this.user?.permissions.map(perm => {
-      if (perm === this.permissions.createUser) {
-        this.canCreate = true;
-      }
-    });
-  }
+  ngOnInit(): void { }
 
   createNewProject(): void {
 

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Roles } from 'app/state/app.state';
+import { ProjectCard } from './project-card.model';
 
 @Component({
   selector: 'app-project-card',
@@ -12,8 +12,6 @@ export class ProjectCardComponent implements OnInit {
   constructor(private route: Router) { }
 
   @Input() projectData!: any;
-  @Input() role!: string;
-  roles = Roles;
 
   ngOnInit(): void {
     console.log(this.projectData);

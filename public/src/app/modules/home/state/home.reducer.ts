@@ -6,7 +6,7 @@ import * as HomeActions from './home.action';
 /**
  * this is used for lazy loaded components
  */
-export interface HomeBaseState extends AppState.RootState {
+export interface HomeBaseState extends AppState.State {
     home: HomeState
 }
 
@@ -15,9 +15,10 @@ export interface HomeState {
     part: string;
     projects: Project[];
     error?: any;
+    user: any;
 }
 
-const initialState: HomeState = { displayNav: true, part: '', projects: [] };
+const initialState: HomeState = { displayNav: true, part: '', projects: [], user: null };
 
 export const homeReducer = createReducer<HomeState>(
     initialState,
@@ -44,6 +45,12 @@ export const homeReducer = createReducer<HomeState>(
             ...state,
             projects: [...state.projects, action.project]
         }   
+    }),
+    on(HomeActions.getUserSuccess, (state, action): HomeState => {
+        return {
+            ...state,
+            user: action.user
+        }
     }),
 )
 
