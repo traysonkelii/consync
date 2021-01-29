@@ -4,5 +4,7 @@
     </mat-card-header>
     <mat-card-content>
         <p>Ball in court items: {{projectData.inCourtItems}}</p>
+        <p *ngIf="role === roles.level2 || role === roles.level3 || role === roles.admin">project-level analytics data</p>
+        <p *ngIf="role === roles.level3 || role === roles.level3 || role === roles.admin">GC team members are performing</p>
       </mat-card-content>
 </mat-card>

@@ -16,7 +16,7 @@ COPY --from=front_end_modules node_modules ./node_modules
 RUN npm install -g @angular/cli
 
 # Build the angular app in production mode and store the artifacts in dist folder
-RUN npm run build --prod --aot --outputHashing=all --output-path=dist
+RUN npm run build -- --prod --aot --outputHashing=all --output-path=dist
 
 FROM node as server_modules
 COPY server/package.json server/package-lock.json ./

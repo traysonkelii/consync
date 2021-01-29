@@ -1,5 +1,5 @@
 <app-header 
 [show]="displayNav$ | async"
-[isLoggedIn]="isLoggedIn$ | async"
+[user]="user$ | async"
 (newProject)="createNewProject($any($event))"
 ></app-header>
