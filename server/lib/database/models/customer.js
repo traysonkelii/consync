@@ -1,11 +1,9 @@
 let mongoose = require('mongoose');
 
-let ProjectSchema = mongoose.Schema(
+let CustomerSchema = mongoose.Schema(
 	{
-		title: {type: String, required: 'title is a required field'},
+		name: {type: String, required: 'name is a required field'},
 		description: {type: String, require: 'description is a required field'},
-		customerId: {type: ObjectId},
-		status: {type: String, enun: ['active', 'archived'], default: "active"}
 	}, {
 	timestamps: true,
 	versionKey: false, // removing mongoose versionkey because it prevents updating the document when you don't provIde a new version
@@ -13,4 +11,4 @@ let ProjectSchema = mongoose.Schema(
 }
 );
 
-module.exports = mongoose.model('Project', ProjectSchema);
+module.exports = mongoose.model('Customer', CustomerSchema);

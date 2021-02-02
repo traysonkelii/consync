@@ -1,10 +1,11 @@
 let mongoose = require('mongoose');
 
-let ProjectSchema = mongoose.Schema(
+let ChannelSchema = mongoose.Schema(
 	{
 		title: {type: String, required: 'title is a required field'},
-		description: {type: String, require: 'description is a required field'},
-		customerId: {type: ObjectId},
+		description: {type: String},
+		projectId: {type: ObjectId, require: 'projectId is a required field'},
+		members: {type: Array},
 		status: {type: String, enun: ['active', 'archived'], default: "active"}
 	}, {
 	timestamps: true,
@@ -13,4 +14,4 @@ let ProjectSchema = mongoose.Schema(
 }
 );
 
-module.exports = mongoose.model('Project', ProjectSchema);
+module.exports = mongoose.model('Channel', ChannelSchema);
