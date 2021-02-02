@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { Permissions, User } from 'app/state/app.state';
+import { User } from 'app/state/app.state';
 import { NewProjectModalComponent, ProjectDialogData } from './components/new-project-modal/new-project-modal.component';
 
 @Component({
@@ -8,27 +8,21 @@ import { NewProjectModalComponent, ProjectDialogData } from './components/new-pr
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
   constructor(public dialog: MatDialog) { }
 
   @Input() show!: boolean | null;
   @Input() user!: User | undefined | null;
+  @Input() createProject!: any;
   @Output() newProject = new EventEmitter();
-  permissions = Permissions;
-  canCreate = false;
-
-  ngOnInit(): void {
-    this.user?.permissions.map(perm => {
-      if (perm === this.permissions.createUser) {
-        this.canCreate = true;
-      }
-    });
-  }
 
   createNewProject(): void {
 
-    const data: ProjectDialogData = { name: '' };
+    const data: ProjectDialogData = {
+      title: '',
+      description: ''
+    };
 
     const dialogConfig: MatDialogConfig = { width: '250px', data };
 

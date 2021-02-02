@@ -1,5 +1,5 @@
 import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
-import { RootState } from './app.state';
+import { Permissions, RootState } from './app.state';
 import * as RootActions from './app.actions';
 
 const initialState: RootState = { user: undefined };
@@ -24,4 +24,9 @@ export const getUser = createSelector(
 export const getUserPermissions = createSelector(
     getRootFeatureState,
     state => state.user?.permissions
-)
+);
+
+export const getCreateProjectPermissions = createSelector(
+    getRootFeatureState,
+    state => state.user?.permissions.filter(permission => permission === Permissions.createProject)
+);
