@@ -1,7 +1,7 @@
 db.users.insertMany([
 	{
-		companyID: 'BobBuilders',
-		cusomterID: 'BobsCustomers',
+		_id: '600fa8ee728fa724ffee761f',
+		cusomterID: '601fa8e6bc8001095fd45ag0',
 		username: 'traysonkelii@gmail.com',
 		email: 'traysonkelii@gmail.com',
 		firstName: 'Jason',
@@ -9,8 +9,9 @@ db.users.insertMany([
 		userRoles: ['Company Admin']
     },
     {
-		companyID: 'BobBuilders',
-		cusomterID: 'BobsCustomers',
+		_id: '600fa8ee728fa724ffee7620',
+		cusomterID: '601fa8e6bc8001095fd45ag0',
+		companyIds: [''],
 		username: 'jcawesome@gmail.com',
 		email: 'jcawesome@gmail.com',
 		firstName: 'Josh',
