@@ -13,7 +13,4 @@ router.route('/:id')
 router.route('/query')
 	.post(projectController.getProjects)
 
-router.route('/:id/channels')
-	.get(projectController.getChannelsForProject)
-
 module.exports = router;

@@ -2,8 +2,8 @@ let mongoose = require('mongoose');
 
 let UserSchema = mongoose.Schema(
 	{
-		companyID: String,
-		cusomterID: String,
+		companyID: mongoose.Schema.Types.ObjectId,
+		cusomterID: mongoose.Schema.Types.ObjectId,
 		username: { type: String, required: 'username is a required field', unique: true },
 		email: { type: String, required: 'email is a required field', unique: true },
 		firstName: String,

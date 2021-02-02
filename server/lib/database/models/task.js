@@ -2,9 +2,9 @@ let mongoose = require('mongoose');
 
 let TaskSchema = mongoose.Schema(
 	{
-		messageId: {type: ObjectId, required: 'messageId is a required field'},
-		assignerUserId: {type: ObjectId, required: 'assignerUserId is a required field'},
-		assigneeUserId: {type: ObjectId, required: 'assigneeUserId is a required field'},
+		messageId: {type: mongoose.Schema.Types.ObjectId, required: 'messageId is a required field'},
+		assignerUserId: {type: mongoose.Schema.Types.ObjectId, required: 'assignerUserId is a required field'},
+		assigneeUserId: {type: mongoose.Schema.Types.ObjectId, required: 'assigneeUserId is a required field'},
 		datetimeFirstResponded: {type: Date},
 		dateTimeResolved: {type: Date},
 		status: {type: String, enum: ['new', 'seen', 'in progress', 'done', 'archived'], default: 'new'}

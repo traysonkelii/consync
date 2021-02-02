@@ -10,7 +10,4 @@ router.route('/:id')
 router.route('/')
 	.post(channelController.createChannel)
 
-router.route('/:id/threads')
-	.get(channelController.getThreadsForChannel)
-
 module.exports = router;

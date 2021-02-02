@@ -4,7 +4,7 @@ let ChannelSchema = mongoose.Schema(
 	{
 		title: {type: String, required: 'title is a required field'},
 		description: {type: String},
-		projectId: {type: ObjectId, require: 'projectId is a required field'},
+		projectId: {type: mongoose.Schema.Types.ObjectId, require: 'projectId is a required field'},
 		members: {type: Array},
 		status: {type: String, enun: ['active', 'archived'], default: "active"}
 	}, {
