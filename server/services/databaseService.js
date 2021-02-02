@@ -9,7 +9,10 @@ const Task = require('../lib/database/models/task');
 let databaseService = {};
 
 databaseService.getProjectById = async (projectId) => {
-	let project = await Project.findById(projectId).exec();
+	let project = await Project.aggregate(
+		[{$$lookup: 
+		{from: 'channels', 
+localField: '_id', foreignField: 'projectId', as: 'channels'}}]).exec();
 	return project;
 }
 
