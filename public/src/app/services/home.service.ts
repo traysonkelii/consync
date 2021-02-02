@@ -6,8 +6,9 @@ import { getMockProjects } from '@mocks/project.mock';
 import { Observable, of } from 'rxjs';
 
 export interface Project {
-  projectId: number,
+  projectId?: number,
   title: string,
+  description?: string,
   inCourtItems?: number;
   averageResponseTime?: number;
   globalAverageResponseTime?: number;
@@ -38,7 +39,10 @@ export class HomeService {
   }
 
   createProject(projectRequest: any): Observable<Project> {
-    const dataFromServer: Project = { title: projectRequest.data.name, projectId: Math.round(Math.random() * 2000) }
-    return of(dataFromServer);
+    const data: Project = { title: projectRequest.data.title, description: projectRequest.data.description }
+    if (environment.production) {
+      return this.http.post<Project>(`${environment.baseUrl}/project`, data);
+    }
+    return of(data);
   }
 }

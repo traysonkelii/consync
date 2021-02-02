@@ -15,12 +15,9 @@ export class ProjectCardComponent implements OnInit {
   @Input() role!: string;
   roles = Roles;
 
-  ngOnInit(): void {
-    console.log(this.projectData);
-  }
+  ngOnInit(): void { }
 
-  test(){
+  test() {
     this.route.navigate(['/personal-communication'])
   }
-
 }
