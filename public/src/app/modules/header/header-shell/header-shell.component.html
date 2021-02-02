@@ -1,5 +1,6 @@
 <app-header 
 [show]="displayNav$ | async"
 [user]="user$ | async"
+[createProject]="createProject$ | async"
 (newProject)="createNewProject($any($event))"
 ></app-header>
