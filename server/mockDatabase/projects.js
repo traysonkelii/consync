@@ -5,7 +5,7 @@ db.projects.insertMany([
 		title: 'Project One'
 	},
 	{
-		_id: "600fa8e6bc8001095fd45af9",
+		_id: ObjectId("600fa8e6bc8001095fd45af9"),
 		description: 2,
 		title: 'Bob Builders'
 	},
