@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Project } from '@services/home.service';
 import { Roles } from 'app/state/app.state';
 
 @Component({
@@ -11,13 +12,13 @@ export class ProjectCardComponent implements OnInit {
 
   constructor(private route: Router) { }
 
-  @Input() projectData!: any;
+  @Input() projectData!: Project;
   @Input() role!: string;
   roles = Roles;
 
   ngOnInit(): void { }
 
-  test() {
-    this.route.navigate(['/personal-communication'])
+  goToProject() {
+    this.route.navigate(['/project',this.projectData._id]);
   }
 }

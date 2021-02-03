@@ -14,7 +14,7 @@ export class HeaderComponent {
 
   @Input() show!: boolean | null;
   @Input() user!: User | undefined | null;
-  @Input() createProject!: any;
+  @Input() canCreateProject!: string[];
   @Output() newProject = new EventEmitter();
 
   createNewProject(): void {
@@ -32,7 +32,9 @@ export class HeaderComponent {
     );
 
     dialogRef.afterClosed().subscribe(result => {
-      this.newProject.emit(result);
+      if (result) {
+        this.newProject.emit(result);
+      }
     });
   }
 }
