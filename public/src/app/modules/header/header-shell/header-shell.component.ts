@@ -19,16 +19,20 @@ export class HeaderShellComponent implements OnInit {
 
   displayNav$!: Observable<boolean>;
   user$!: Observable<User | undefined>;
-  createProject$!: Observable<any>;
+  canCreateProject$!: Observable<any>;
 
   ngOnInit(): void {
     this.displayNav$ = this.homeStore.select(getDisplayNav);
     this.user$ = this.homeStore.select(getUser);
-    this.createProject$ = this.homeStore.select(getCreateProjectPermissions);
+    this.canCreateProject$ = this.homeStore.select(getCreateProjectPermissions);
   }
 
-  createNewProject(data: ProjectDialogData): void {
-    this.homeStore.dispatch(HomeActions.createProject({ data }));
-  }
+  createNewProject({ title, description }: ProjectDialogData): void {
+    const projectRequest = {
+      title,
+      description
+    }
 
+    this.homeStore.dispatch(HomeActions.createProject({ projectRequest }));
+  }
 }

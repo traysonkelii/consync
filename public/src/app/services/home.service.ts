@@ -4,9 +4,10 @@ import { environment } from '@environments/environment';
 import { getMockUser } from '@mocks/user.mock';
 import { getMockProjects } from '@mocks/project.mock';
 import { Observable, of } from 'rxjs';
+import { ProjectDialogData } from '@modules/header/components/new-project-modal/new-project-modal.component';
 
 export interface Project {
-  projectId?: number,
+  _id?: string,
   title: string,
   description?: string,
   inCourtItems?: number;
@@ -38,8 +39,8 @@ export class HomeService {
     return of(getMockProjects());
   }
 
-  createProject(projectRequest: any): Observable<Project> {
-    const data: Project = { title: projectRequest.data.title, description: projectRequest.data.description }
+  createProject({ title, description }: ProjectDialogData): Observable<Project> {
+    const data: Project = { title, description }
     if (environment.production) {
       return this.http.post<Project>(`${environment.baseUrl}/project`, data);
     }

@@ -24,6 +24,10 @@ const routes: Routes = [
     // canActivate: [AuthGuardService],
   },
   {
+    path: 'project',
+    loadChildren: () => import('./modules/project/project.module').then(m => m.ProjectModule),
+  },
+  {
     path: '**',
     redirectTo: '/home',
     pathMatch: 'full'

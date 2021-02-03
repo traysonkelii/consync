@@ -4,7 +4,9 @@
             <button [routerLink]="'/home'" mat-icon-button>
                 <mat-icon>support</mat-icon>
             </button>
-            <a mat-button (click)="createNewProject()" *ngIf="createProject.length > 0"> New Project </a>
+            <a mat-button (click)="createNewProject()" *ngIf="canCreateProject && canCreateProject.length > 0"> New
+                Project
+            </a>
             <a mat-button [routerLink]="'/personal-communication'">Database</a>
             <a mat-button [routerLink]="'/project-communication'">Task List</a>
             <a mat-button [routerLink]="'/project-communication'">Surveying</a>

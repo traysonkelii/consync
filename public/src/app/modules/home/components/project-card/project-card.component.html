@@ -1,4 +1,4 @@
-<mat-card class="clickable" (click)="test()">
+<mat-card class="clickable" (click)="goToProject()" *ngIf="projectData">
     <mat-card-header>
         <mat-card-title>{{projectData.title}}</mat-card-title>
     </mat-card-header>
