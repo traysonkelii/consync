@@ -46,7 +46,7 @@ module.exports.getTasksByMessageId = async (req, res, next) => {
 		if(!req.result) {
 			req.result = {tasks};
 		} else {
-			req.result.tasks = task;
+			req.result.tasks = tasks;
 		}
 	}
 	catch (err) {
@@ -62,7 +62,7 @@ module.exports.createTask = async (req, res, next) => {
 	let error;
 	try{
 		let taskObj = req.body;
-		let task = createTask(taskObj);
+		let task = await createTask(taskObj);
 		req.result = task;
 	} catch (err) {
 		error = err;

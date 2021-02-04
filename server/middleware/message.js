@@ -24,7 +24,7 @@ module.exports.createMessage = async (req, res, next) => {
 	let error;
 	try{
 		let messageObj = req.body;
-		let message = createMessage(messageObj);
+		let message = await createMessage(messageObj);
 		req.result = message;
 	} catch (err) {
 		error = err;
@@ -37,8 +37,8 @@ module.exports.getMessageById = async (req, res, next) => {
 	let error;
 	try {
 		let messageId = req.params.id;
-		let message = getMessageById(messageId);
-		req.result = message;
+		let message = await getMessageById(messageId);
+		req.result = {message};
 	} catch (err) {
 		error = err;
 		err.status = 400;
@@ -51,7 +51,7 @@ module.exports.updateMessageById = async (req, res, next) => {
 	try{
 		let messageId = req.params.id;
 		let messageUpdates = req.body;
-		let message = updateMessage(messageId, messageUpdates);
+		let message = await updateMessage(messageId, messageUpdates);
 		req.result = message;
 	} catch (err) {
 		error = err;
@@ -65,7 +65,7 @@ module.exports.archiveMessage = async (req, res, next) => {
 	try{
 		let messageId = req.params.id;
 		let messageUpdates = {status: 'archived'};
-		let message = updateMessage(messageId, messageUpdates);
+		let message = await updateMessage(messageId, messageUpdates);
 		req.result = message;
 	} catch (err) {
 		error = err;

@@ -87,17 +87,17 @@ databaseService.updateChannelById = async (channelId, channelUpdates) => {
 }
 
 databaseService.getThreadsByChannelId = async (channelId) => {
-	let threads = await Thread.find({channelId, status: {$ne: "archvied"}});
+	let threads = await Thread.find({channelId: ObjectId(channelId), status: {$ne: "archvied"}});
 	return threads;
 }
 
 databaseService.getMessagesByThreadId = async (threadId) => {
-	let messages = await Message.find({threadId, status: {$ne: "archvied"}});
+	let messages = await Message.find({threadId: ObjectId(threadId), status: {$ne: "archvied"}});
 	return messages;
 }
 
 databaseService.getTasksByMessageId = async (messageId) => {
-	let tasks = await Task.find({messageId, status: {$ne: "archived" }});
+	let tasks = await Task.find({messageId: ObjectId(messageId), status: {$ne: "archived" }});
 	return tasks;
 }
 
@@ -150,12 +150,12 @@ databaseService.updateMessage = async (messageId, messageUpdates) => {
 }
 
 databaseService.getTasksAssignedToUser = async (userId) => {
-	let tasks = await Task.find({assigneeUserId: userId})
+	let tasks = await Task.find({assigneeUserId: ObjectId(userId)})
 	return tasks;
 }
 
 databaseService.getTasksCreatedByUser = async (userId) => {
-	let tasks = await Task.find({assignerUserId: userId})
+	let tasks = await Task.find({assignerUserId: ObjectId(userId)})
 	return tasks;
 }
 

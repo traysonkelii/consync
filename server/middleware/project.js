@@ -43,7 +43,7 @@ module.exports.updateProjectById = async (req, res, next) => {
 	try{
 		let projectId = req.params.id;
 		let projectUpdates = req.body;
-		let project = updateProjectById(projectId, projectUpdates);
+		let project = await updateProjectById(projectId, projectUpdates);
 		req.result = project;
 	} catch (err) {
 		error = err;
