@@ -66,7 +66,7 @@ databaseService.getUsers = async (filter = {}) => {
 }
 
 databaseService.getChannelById = async (channelId) => {
-	let channel = await Channel.findById(channelId);
+	let channel = await Channel.findById(channelId).populate('members');
 	return channel;
 }
 
@@ -97,7 +97,9 @@ databaseService.getMessagesByThreadId = async (threadId) => {
 }
 
 databaseService.getTasksByMessageId = async (messageId) => {
-	let tasks = await Task.find({messageId: ObjectId(messageId), status: {$ne: "archived" }});
+	let tasks = await Task.find({messageId: ObjectId(messageId), status: {$ne: "archived" }})
+		.populate('assigneeUserId')
+		.populate('assignerUserId');
 	return tasks;
 }
 
