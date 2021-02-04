@@ -7,7 +7,12 @@ module.exports.getChannelsByProjectId = async (req, res, next) => {
 	try {
 		let projectId = req.params.id;
 		let channels = await getChannelsByProjectId(projectId);
-		req.result.channels = channels;
+		
+		if(!req.result){
+			req.result = {channels};
+		} else {
+			req.result.channels = channels;
+		}
 	}
 	catch (err) {
 		error = err;

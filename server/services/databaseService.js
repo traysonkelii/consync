@@ -5,14 +5,12 @@ const Channel = require('../lib/database/models/channel');
 const Thread = require('../lib/database/models/thread');
 const Message = require('../lib/database/models/message');
 const Task = require('../lib/database/models/task');
+const ObjectId = require('mongoose').Types.ObjectId;
 
 let databaseService = {};
 
 databaseService.getProjectById = async (projectId) => {
-	let project = await Project.aggregate(
-		[{$$lookup: 
-		{from: 'channels', 
-localField: '_id', foreignField: 'projectId', as: 'channels'}}]).exec();
+	let project = await Project.findById(projectId).exec();
 	return project;
 }
 
@@ -73,7 +71,7 @@ databaseService.getChannelById = async (channelId) => {
 }
 
 databaseService.getChannelsByProjectId = async (projectId) => {
-	let channels = await Channel.find({projectId, status: {$ne: "archvied"}});
+	let channels = await Channel.find({projectId: ObjectId(projectId)}).exec();
 	return channels;
 }
 
