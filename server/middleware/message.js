@@ -10,7 +10,7 @@ module.exports.getMessagesByThreadId = async (req, res, next) => {
 		if(!req.result) {
 			req.result = {messages};
 		} else {
-			req.result.messages = message;
+			req.result.messages = messages;
 		}
 	}
 	catch (err) {

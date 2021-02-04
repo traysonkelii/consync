@@ -92,7 +92,7 @@ databaseService.getThreadsByChannelId = async (channelId) => {
 }
 
 databaseService.getMessagesByThreadId = async (threadId) => {
-	let messages = await Message.find({threadId: ObjectId(threadId), status: {$ne: "archvied"}});
+	let messages = await Message.find({threadId: ObjectId(threadId), status: {$ne: "archvied"}}).populate('authorId');
 	return messages;
 }
 

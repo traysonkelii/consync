@@ -25,7 +25,7 @@ module.exports.getThreadById = async (req, res, next) => {
 	try {
 		let threadId = req.params.id;
 		let thread = await getThreadById(threadId);
-		req.result = thread;
+		req.result = {thread};
 	} catch (err) {
 		error = err;
 		error.status = 400;
