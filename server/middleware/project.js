@@ -7,7 +7,7 @@ module.exports.getProjectById = async (req, res, next) => {
 	try {
 		let projectId = req.params.id;
 		let project = await getProjectById(projectId);
-		req.result = project;
+		req.result = {project};
 	} catch (err) {
 		error = err
 	}
@@ -43,7 +43,7 @@ module.exports.updateProjectById = async (req, res, next) => {
 	try{
 		let projectId = req.params.id;
 		let projectUpdates = req.body;
-		let project = updateProjectById(projectId, projectUpdates);
+		let project = await updateProjectById(projectId, projectUpdates);
 		req.result = project;
 	} catch (err) {
 		error = err;
@@ -52,6 +52,6 @@ module.exports.updateProjectById = async (req, res, next) => {
 	next(error);
 }
 
-module.exports.return = (req, res) => {
+module.exports.return = (req, res, next) => {
 	res.json(req.result);
 };

@@ -5,14 +5,12 @@ const Channel = require('../lib/database/models/channel');
 const Thread = require('../lib/database/models/thread');
 const Message = require('../lib/database/models/message');
 const Task = require('../lib/database/models/task');
+const ObjectId = require('mongoose').Types.ObjectId;
 
 let databaseService = {};
 
 databaseService.getProjectById = async (projectId) => {
-	let project = await Project.aggregate(
-		[{$$lookup: 
-		{from: 'channels', 
-localField: '_id', foreignField: 'projectId', as: 'channels'}}]).exec();
+	let project = await Project.findById(projectId).exec();
 	return project;
 }
 
@@ -68,12 +66,12 @@ databaseService.getUsers = async (filter = {}) => {
 }
 
 databaseService.getChannelById = async (channelId) => {
-	let channel = await Channel.findById(channelId);
+	let channel = await Channel.findById(channelId).populate('members');
 	return channel;
 }
 
 databaseService.getChannelsByProjectId = async (projectId) => {
-	let channels = await Channel.find({projectId, status: {$ne: "archvied"}});
+	let channels = await Channel.find({projectId: ObjectId(projectId)}).exec();
 	return channels;
 }
 
@@ -89,17 +87,19 @@ databaseService.updateChannelById = async (channelId, channelUpdates) => {
 }
 
 databaseService.getThreadsByChannelId = async (channelId) => {
-	let threads = await Thread.find({channelId, status: {$ne: "archvied"}});
+	let threads = await Thread.find({channelId: ObjectId(channelId), status: {$ne: "archvied"}});
 	return threads;
 }
 
 databaseService.getMessagesByThreadId = async (threadId) => {
-	let messages = await Message.find({threadId, status: {$ne: "archvied"}});
+	let messages = await Message.find({threadId: ObjectId(threadId), status: {$ne: "archvied"}});
 	return messages;
 }
 
 databaseService.getTasksByMessageId = async (messageId) => {
-	let tasks = await Task.find({messageId, status: {$ne: "archived" }});
+	let tasks = await Task.find({messageId: ObjectId(messageId), status: {$ne: "archived" }})
+		.populate('assigneeUserId')
+		.populate('assignerUserId');
 	return tasks;
 }
 
@@ -152,12 +152,12 @@ databaseService.updateMessage = async (messageId, messageUpdates) => {
 }
 
 databaseService.getTasksAssignedToUser = async (userId) => {
-	let tasks = await Task.find({assigneeUserId: userId})
+	let tasks = await Task.find({assigneeUserId: ObjectId(userId)})
 	return tasks;
 }
 
 databaseService.getTasksCreatedByUser = async (userId) => {
-	let tasks = await Task.find({assignerUserId: userId})
+	let tasks = await Task.find({assignerUserId: ObjectId(userId)})
 	return tasks;
 }
 

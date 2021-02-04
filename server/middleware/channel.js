@@ -7,7 +7,12 @@ module.exports.getChannelsByProjectId = async (req, res, next) => {
 	try {
 		let projectId = req.params.id;
 		let channels = await getChannelsByProjectId(projectId);
-		req.result.channels = channels;
+		
+		if(!req.result){
+			req.result = {channels};
+		} else {
+			req.result.channels = channels;
+		}
 	}
 	catch (err) {
 		error = err;
@@ -20,7 +25,7 @@ module.exports.createChannel = async (req, res, next) => {
 	let error;
 	try{
 		let channelObj = req.body;
-		let channel = createChannel(channelObj);
+		let channel = await createChannel(channelObj);
 		req.result = channel;
 	} catch (err) {
 		error = err;
@@ -33,7 +38,7 @@ module.exports.getChannelById = async (req, res, next) => {
 	let error;
 	try {
 		let channelId = req.params.id;
-		let channel = getChannelById(channelId);
+		let channel = await getChannelById(channelId);
 		req.result = channel;
 	} catch (err) {
 		error = err;
@@ -47,7 +52,7 @@ module.exports.updateChannelById = async (req, res, next) => {
 	try{
 		let channelId = req.params.id;
 		let channelUpdates = req.body;
-		let channel = updateChannelById(channelId, channelUpdates);
+		let channel = await updateChannelById(channelId, channelUpdates);
 		req.result = channel;
 	} catch (err) {
 		error = err;
@@ -61,7 +66,7 @@ module.exports.archiveChannel = async (req, res, next) => {
 	try{
 		let channelId = req.params.id;
 		let channelUpdates = {status: 'archived'};
-		let channel = updateChannelById(channelId, channelUpdates);
+		let channel = await updateChannelById(channelId, channelUpdates);
 		req.result = channel;
 	} catch (err) {
 		error = err;
