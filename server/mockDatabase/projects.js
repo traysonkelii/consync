@@ -1,6 +1,6 @@
 db.projects.insertMany([
 	{
-		_id: "600fa8e6bc8001095fd45af8",
+		_id: ObjectId("600fa8e6bc8001095fd45af8"),
 		description: 1,
 		title: 'Project One'
 	},
@@ -10,17 +10,17 @@ db.projects.insertMany([
 		title: 'Bob Builders'
 	},
 	{
-		_id: "600fa8e6bc8001095fd45ag0",
+		_id: ObjectId("600fa8e6bc8001095fd45aa0"),
 		description: 3,
 		title: 'Layton Community College'
 	},
 	{
-		_id: "600fa8e6bc8001095fd45ag1",
+		_id: ObjectId("600fa8e6bc8001095fd45aa1"),
 		description: 4,
 		title: 'Salt Lake Community College'
 	},
 	{
-		_id: "600fa8e6bc8001095fd45ag2",
+		_id: ObjectId("600fa8e6bc8001095fd45aa2"),
 		description: 5,
 		title: 'Chevron Gas Station'
 	}

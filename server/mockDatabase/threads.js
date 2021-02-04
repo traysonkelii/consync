@@ -1,13 +1,13 @@
 db.threads.insertMany([
 	{
-		_id: '604fa8e6bc8001095fd45af9',
-		channelId: '603fa8e6bc8001095fd45af9',
+		_id: ObjectId('604fa8e6bc8001095fd45af9'),
+		channelId: ObjectId('603fa8e6bc8001095fd45bf0'),
 		messageId: '',
 		members: ['']
 	},
 	{
-		_id: '604fa8e6bc8001095fd45ag0',
-		channelId: '603fa8e6bc8001095fd45af9',
+		_id: ObjectId('604fa8e6bc8001095fd45aa0'),
+		channelId: ObjectId('603fa8e6bc8001095fd45bf0'),
 		description: 2,
 		title: 'Bob Builders'
 	}
