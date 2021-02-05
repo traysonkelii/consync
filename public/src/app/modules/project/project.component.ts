@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'project',
@@ -10,8 +10,22 @@ export class ProjectComponent implements OnInit {
   constructor() { }
 
   @Input() project: any;
+  @Output() emitNewChannel = new EventEmitter();
+
+  newChannelTitle: string = '';
+  newChannelDesc: string = ''
 
   ngOnInit(): void {
+
+  }
+
+  handleCreateChannel() { 
+    const newChannelRequest = {
+      title: this.newChannelTitle,
+      description: this.newChannelDesc,
+      projectId: this.project.project._id,
+    }
+    this.emitNewChannel.emit(newChannelRequest)
   }
 
 }

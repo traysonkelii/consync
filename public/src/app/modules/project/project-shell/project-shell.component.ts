@@ -28,4 +28,8 @@ export class ProjectShellComponent implements OnInit {
     }
   }
 
+  createChannel(event: any) {
+    this.store.dispatch(HomeActions.createNewChannel(event));
+  }
+
 }
