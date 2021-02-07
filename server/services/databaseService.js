@@ -25,7 +25,7 @@ databaseService.getProjects = async (filters = {}) => {
 databaseService.createProject = async (projectObj) => {
 	const project = new Project(projectObj);
 	await project.save();
-	return projectObj;
+	return project;
 }
 
 databaseService.updateProjectById = async (projectId, projectUpdates) => {
@@ -36,7 +36,7 @@ databaseService.updateProjectById = async (projectId, projectUpdates) => {
 databaseService.createUser = async (userObj) => {
 	const user = new User(userObj);
 	await user.save();
-	return userObj;
+	return user;
 }
 
 databaseService.getUserById = async (userId) => {
@@ -78,7 +78,7 @@ databaseService.getChannelsByProjectId = async (projectId) => {
 databaseService.createChannel = async (channelObj) => {
 	let channel = new Channel(channelObj);
 	await channel.save();
-	return channelObj;
+	return channel;
 }
 
 databaseService.updateChannelById = async (channelId, channelUpdates) => {
@@ -104,7 +104,7 @@ databaseService.getTasksByMessageId = async (messageId) => {
 }
 
 databaseService.createTask = async (taskObj) => {
-	let task = new Task(taskObj);
+	const task = new Task(taskObj);
 	await task.save();
 	return task;
 }
@@ -125,9 +125,9 @@ databaseService.getThreadById = async (threadId) => {
 }
 
 databaseService.createThread = async (threadObj) => {
-	let thread = new Thread(threadObj);
+	const thread = new Thread(threadObj);
 	await thread.save();
-	return threadObj;
+	return thread;
 }
 
 databaseService.updateThread = async (threadId, threadUpdates) => {
@@ -136,9 +136,9 @@ databaseService.updateThread = async (threadId, threadUpdates) => {
 }
 
 databaseService.createMessage = async (messageObj) => {
-	let message = new Message(messageObj);
+	const message = new Message(messageObj);
 	await message.save();
-	return messageObj;
+	return message;
 }
 
 databaseService.getMessageById = async (messageId) => {
