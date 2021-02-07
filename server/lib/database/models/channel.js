@@ -2,9 +2,9 @@ let mongoose = require('mongoose');
 
 let ChannelSchema = mongoose.Schema(
 	{
-		title: {type: String, required: 'title is a required field'},
+		title: {type: String, required: [true, 'title is a required field']},
 		description: {type: String},
-		projectId: {type: mongoose.Schema.Types.ObjectId, require: 'projectId is a required field', ref: 'Project'},
+		projectId: {type: mongoose.Schema.Types.ObjectId, required: [true, 'projectId is a required field'], ref: 'Project'},
 		members: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
 		status: {type: String, enun: ['active', 'archived'], default: "active"}
 	}, {

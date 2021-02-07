@@ -3,7 +3,7 @@ let mongoose = require('mongoose');
 let ProjectSchema = mongoose.Schema(
 	{
 		title: {type: String, required: 'title is a required field'},
-		description: {type: String, require: 'description is a required field'},
+		description: {type: String, required: 'description is a required field'},
 		customerId: {type: mongoose.Schema.Types.ObjectId, ref: 'Customer'},
 		status: {type: String, enun: ['active', 'archived'], default: "active"}
 	}, {

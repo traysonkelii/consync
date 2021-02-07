@@ -76,8 +76,8 @@ databaseService.getChannelsByProjectId = async (projectId) => {
 }
 
 databaseService.createChannel = async (channelObj) => {
-	let channel = new Channel();
-	await channel.save(channelObj);
+	let channel = new Channel(channelObj);
+	await channel.save();
 	return channelObj;
 }
 
