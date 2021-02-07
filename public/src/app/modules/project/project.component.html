@@ -1,4 +1,11 @@
 <div style="text-align: center; margin-top: 2%;" *ngIf="project">
-    <h1>{{project.title}}</h1>
-    <h2>{{project.description}}</h2>
+    <p>Title: {{project.project.title}}</p>
+    <p>Description: {{project.project.description}}</p>
+    <p>Channels: {{project.channels}}</p>
+    <p>Create New channel below</p>
+    <p>Title: <input type="text" [(ngModel)]="newChannelTitle"></p>
+    <p>Desc: <input type="text" [(ngModel)]="newChannelDesc"></p>
+    <button (click)="handleCreateChannel()">create</button>
 </div>
+
+{{ project | json }}

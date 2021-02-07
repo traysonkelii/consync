@@ -8,6 +8,8 @@ import { StoreModule } from '@ngrx/store';
 import { projectReducer } from './state/project.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { ProjectEffects } from './state/project.effects';
+import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 @NgModule({
@@ -17,6 +19,7 @@ import { ProjectEffects } from './state/project.effects';
     ProjectRoutingModule,
     StoreModule.forFeature('project', projectReducer),
     EffectsModule.forFeature([ProjectEffects]),
+    FormsModule,
   ],
 })
 export class ProjectModule { }

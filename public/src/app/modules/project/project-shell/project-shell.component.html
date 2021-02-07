@@ -1,2 +1,5 @@
-<project [project]="project$ | async">
+<project 
+    [project]="project$ | async"
+    (emitNewChannel)="createChannel($event)"
+>
 </project>
