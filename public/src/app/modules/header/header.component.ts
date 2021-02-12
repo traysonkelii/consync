@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { User } from 'app/state/app.state';
-import { NewProjectModalComponent, ProjectDialogData } from './components/new-project-modal/new-project-modal.component';
 
 @Component({
   selector: 'app-header',
@@ -15,26 +14,4 @@ export class HeaderComponent {
   @Input() show!: boolean | null;
   @Input() user!: User | undefined | null;
   @Input() canCreateProject!: string[];
-  @Output() newProject = new EventEmitter();
-
-  createNewProject(): void {
-
-    const data: ProjectDialogData = {
-      title: '',
-      description: ''
-    };
-
-    const dialogConfig: MatDialogConfig = { width: '250px', data };
-
-    const dialogRef = this.dialog.open(
-      NewProjectModalComponent,
-      dialogConfig
-    );
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.newProject.emit(result);
-      }
-    });
-  }
 }

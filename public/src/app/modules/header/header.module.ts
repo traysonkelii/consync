@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
 import { HomeModule } from '@modules/home/home.module';
 import { HeaderShellComponent } from './header-shell/header-shell.component';
-import { NewProjectModalComponent } from './components/new-project-modal/new-project-modal.component';
+import { NewProjectModalComponent } from '../admin/component/new-project-modal/new-project-modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';

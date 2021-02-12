@@ -13,13 +13,11 @@ export class ProjectComponent implements OnInit {
   @Output() emitNewChannel = new EventEmitter();
 
   newChannelTitle: string = '';
-  newChannelDesc: string = ''
+  newChannelDesc: string = '';
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
 
-  }
-
-  handleCreateChannel() { 
+  handleCreateChannel() {
     const newChannelRequest = {
       title: this.newChannelTitle,
       description: this.newChannelDesc,

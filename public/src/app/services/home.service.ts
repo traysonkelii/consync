@@ -1,10 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
-import { getMockUser } from '@mocks/user.mock';
-import { getMockProjects } from '@mocks/project.mock';
 import { Observable, of } from 'rxjs';
-import { ProjectDialogData } from '@modules/header/components/new-project-modal/new-project-modal.component';
+import { ProjectDialogData } from '@modules/admin/component/new-project-modal/new-project-modal.component';
 
 export interface Project {
   _id?: string,
@@ -26,24 +24,15 @@ export class HomeService {
   constructor(private http: HttpClient) { }
 
   getUser(): Observable<any> {
-    if (environment.production) {
-      return this.http.get(`${environment.baseUrl}/user`);
-    }
-    return of(getMockUser());
+    return this.http.get(`${environment.baseUrl}/user`);
   }
 
   getProjects(): Observable<any> {
-    if (environment.production) {
-      return this.http.post(`${environment.baseUrl}/project/query`, {});
-    }
-    return of(getMockProjects());
+    return this.http.post(`${environment.baseUrl}/project/query`, {});
   }
 
   createProject({ title, description }: ProjectDialogData): Observable<Project> {
     const data: Project = { title, description }
-    if (environment.production) {
-      return this.http.post<Project>(`${environment.baseUrl}/project`, data);
-    }
-    return of(data);
+    return this.http.post<Project>(`${environment.baseUrl}/project`, data);
   }
 }
