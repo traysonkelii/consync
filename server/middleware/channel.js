@@ -39,7 +39,7 @@ module.exports.getChannelById = async (req, res, next) => {
 	try {
 		let channelId = req.params.id;
 		let channel = await getChannelById(channelId);
-		req.result = channel;
+		req.result = {channel};
 	} catch (err) {
 		error = err;
 		err.status = 400;
