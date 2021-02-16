@@ -21,3 +21,28 @@ module.exports.createProject = [
 	project.createProject,
 	project.return
 ]
+
+module.exports.archiveProject = [
+	project.archiveProject,
+	project.return
+]
+
+module.exports.updateProjectStatus = [
+	project.updateProjectStatus,
+	project.return
+]
+
+module.exports.updateProject = [
+	project.updateProject,
+	project.return
+]
+
+module.exports.addUsersToProject = [
+	project.addUsersToProject,
+	project.return
+]
+
+module.exports.removeUserFromProject = [
+	project.removeUserFromProject,
+	project.return
+]
