@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { getSelectedProject, ProjectState } from '../state/project.reducer';
-import * as HomeActions from './../state/project.action';
+import * as ProjectActions from './../state/project.action';
 
 @Component({
   selector: 'project-shell',
@@ -21,7 +21,7 @@ export class ProjectShellComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
     if (this.id) {
-      this.store.dispatch(HomeActions.getProjectData(
+      this.store.dispatch(ProjectActions.getProjectData(
         { projectId: this.id }
       ));
       this.project$ = this.store.select(getSelectedProject);
@@ -29,7 +29,7 @@ export class ProjectShellComponent implements OnInit {
   }
 
   createChannel(event: any) {
-    this.store.dispatch(HomeActions.createNewChannel(event));
+    this.store.dispatch(ProjectActions.createNewChannel(event));
   }
 
 }

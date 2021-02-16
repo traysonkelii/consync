@@ -27,3 +27,9 @@ export class ProjectComponent implements OnInit {
   }
 
 }
+
+/**
+ * Size of pebble: # of messages
+ * Plot by time = further right => later
+ * 
+ */

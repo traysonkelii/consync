@@ -12,9 +12,6 @@ export class ProjectService {
   constructor(private http: HttpClient) { }
 
   getProject(projectId: string): Observable<any> {
-    if (environment.production) {
-      return this.http.get(`${environment.baseUrl}/project/${projectId}`);
-    }
-    return of(getMockProject());
+    return this.http.get(`${environment.baseUrl}/project/${projectId}`);
   }
 }

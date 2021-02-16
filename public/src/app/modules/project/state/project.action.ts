@@ -4,5 +4,5 @@ export const getProjectData = createAction('[Project] get project called', props
 export const getProjectDataSuccess = createAction('[Project] get project data success', props<{project: any}>());
 export const getProjectsDataFailure = createAction('[Project] get project data failure', props<{ error: any }>());
 export const createNewChannel = createAction('[Project] create new Channel', props<{newChannelrequest: any}>());
-export const createNewChannelSuccess = createAction('[Project] create new Channel', props<{channel: any}>());
-export const createNewChannelFailure = createAction('[Project] create new Channel', props<{error: any}>());
+export const createNewChannelSuccess = createAction('[Project] create new Channel Success', props<{channel: any}>());
+export const createNewChannelFailure = createAction('[Project] create new Channel Failure', props<{error: any}>());

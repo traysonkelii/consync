@@ -8,6 +8,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { adminReducer } from './state/admin.reducer';
 import { AdminEffects } from './state/admin.effects';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [AdminComponent, AdminShellComponent],
@@ -16,6 +17,7 @@ import { AdminEffects } from './state/admin.effects';
     AdminRoutingModule,
     StoreModule.forFeature('admin', adminReducer),
     EffectsModule.forFeature([AdminEffects]),
+    MatButtonModule,
   ]
 })
 export class AdminModule { }
