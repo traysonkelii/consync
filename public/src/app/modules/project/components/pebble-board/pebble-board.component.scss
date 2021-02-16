@@ -1,0 +1,34 @@
+.pebble-board-container {
+    background-color: #c7c2c2;
+    display: block;
+    width: 100%;
+    height: 400px;
+    overflow-y: scroll;
+}
+
+.pebble-holder {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.circle {
+    flex: 1;
+    border-radius: 50%;
+    width: 90px;
+    height: 90px; 
+    background-color: #002451;
+    margin: 20px;
+    transition: all .3s ease;
+}
+
+.circle:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+::ng-deep .tooltip{
+    margin: 0;
+    padding: none;
+    color: red;
+}
