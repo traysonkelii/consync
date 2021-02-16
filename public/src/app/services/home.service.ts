@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
 import { Observable, of } from 'rxjs';
 import { ProjectDialogData } from '@modules/admin/component/new-project-modal/new-project-modal.component';
+import { getMockProjects } from '@mocks/project.mock';
 
 export interface Project {
   _id?: string,
@@ -28,6 +29,7 @@ export class HomeService {
   }
 
   getProjects(): Observable<any> {
+    if(!environment.production) return of(getMockProjects());
     return this.http.post(`${environment.baseUrl}/project/query`, {});
   }
 

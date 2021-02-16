@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, ViewChild, ElementRef, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'project',
@@ -17,10 +17,17 @@ export class ProjectComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  handleCreateChannel() {
+  ngOnChanges(changes: SimpleChanges): void {
+    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+    //Add '${implements OnChanges}' to the class.
+    console.log(changes);
+    this.ngOnInit();
+  }
+
+  handleCreateChannel(event: any) {
     const newChannelRequest = {
-      title: this.newChannelTitle,
-      description: this.newChannelDesc,
+      title: event.title,
+      description: event.description,
       projectId: this.project.project._id,
     }
     this.emitNewChannel.emit(newChannelRequest)
@@ -31,5 +38,5 @@ export class ProjectComponent implements OnInit {
 /**
  * Size of pebble: # of messages
  * Plot by time = further right => later
- * 
+ *
  */

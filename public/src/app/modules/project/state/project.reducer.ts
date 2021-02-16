@@ -14,6 +14,12 @@ export const projectReducer = createReducer<ProjectState>(
             ...state,
             project: action.project
         }
+    }),
+    on(ProjectAction.createNewChannelSuccess, (state, action): ProjectState => {
+        state.project.channels.push(action);
+        return {
+            ...state,
+        }
     })
 );
 

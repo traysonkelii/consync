@@ -26,7 +26,7 @@ export class ProjectEffects {
         return this.actions$.pipe(
             ofType(ProjectActions.createNewChannel),
             mergeMap((newChannelRequest) => this.channelService.createChannel(newChannelRequest).pipe(
-                map((channel: any) => ProjectActions.createNewChannelSuccess(channel))
+                map((channel: any) => ProjectActions.createNewChannelSuccess(channel)),
             ))
         );
     });

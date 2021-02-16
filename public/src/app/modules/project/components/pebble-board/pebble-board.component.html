@@ -1,0 +1,10 @@
+<div class="pebble-board-container">
+    <div *ngIf="channels" class="pebble-holder">
+        <div *ngFor="let channel of channels">
+            <div class="circle" 
+            matTooltip="{{channel.title}}" 
+            [matTooltipPosition]="'above'">
+            </div>
+        </div>
+    </div>
+</div>

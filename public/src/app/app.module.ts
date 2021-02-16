@@ -15,6 +15,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { LoadingPageComponent } from './components/loading-page/loading-page.component';
 import { rootReducer } from './state/app.reducer';
 import { RootEffects } from './state/app.effects';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
