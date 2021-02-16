@@ -4,7 +4,8 @@ import { Observable } from 'rxjs';
 import { getDisplayNav, HomeBaseState } from '../../home/state/home.reducer';
 import { ProjectDialogData } from '../components/new-project-modal/new-project-modal.component';
 import * as HomeActions from '../../home/state/home.action';
-import { getLogin, LoginBaseState } from '../../login/state/login.reducer';
+import { User } from 'app/state/app.state';
+import { getCreateProjectPermissions, getUser } from 'app/state/app.reducer';
 
 @Component({
   selector: 'app-header-shell',
@@ -14,19 +15,24 @@ export class HeaderShellComponent implements OnInit {
 
   constructor(
     private homeStore: Store<HomeBaseState>,
-    private loginStore: Store<LoginBaseState>
   ) { }
 
   displayNav$!: Observable<boolean>;
-  isLoggedIn$!: Observable<boolean>;
+  user$!: Observable<User | undefined>;
+  canCreateProject$!: Observable<any>;
 
   ngOnInit(): void {
     this.displayNav$ = this.homeStore.select(getDisplayNav);
-    this.isLoggedIn$ = this.loginStore.select(getLogin);
+    this.user$ = this.homeStore.select(getUser);
+    this.canCreateProject$ = this.homeStore.select(getCreateProjectPermissions);
   }
 
-  createNewProject(data: ProjectDialogData): void {
-    this.homeStore.dispatch(HomeActions.createProject({ data }));
-  }
+  createNewProject({ title, description }: ProjectDialogData): void {
+    const projectRequest = {
+      title,
+      description
+    }
 
+    this.homeStore.dispatch(HomeActions.createProject({ projectRequest }));
+  }
 }

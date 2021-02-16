@@ -2,13 +2,10 @@ let mongoose = require('mongoose');
 
 let ProjectSchema = mongoose.Schema(
 	{
-		title: String,
-		description: String,
-		users: Array,
-		projectTeam: Array,
-		channels: Array,
-		creatorId: String,
-		status: {type: String, enum: ['Open', 'Closed', 'Archived'], default: 'Open'}
+		title: {type: String, required: 'title is a required field'},
+		description: {type: String, required: 'description is a required field'},
+		customerId: {type: mongoose.Schema.Types.ObjectId, ref: 'Customer'},
+		status: {type: String, enun: ['active', 'archived'], default: "active"}
 	}, {
 	timestamps: true,
 	versionKey: false, // removing mongoose versionkey because it prevents updating the document when you don't provIde a new version

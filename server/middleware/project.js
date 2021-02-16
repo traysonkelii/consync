@@ -1,4 +1,4 @@
-const { getProjectById, getProjects, createProject, archiveProject, addUserToProject, updateProjectStatus, updateProject } = require("../services/databaseService");
+const { getProjectById, getProjects, createProject, archiveProject, addUserToProject, updateProjectStatus, updateProject, removeUserFromProject } = require("../services/databaseService");
 
 module.exports = {};
 
@@ -7,7 +7,7 @@ module.exports.getProjectById = async (req, res, next) => {
 	try {
 		let projectId = req.params.id;
 		let project = await getProjectById(projectId);
-		req.result = project;
+		req.result = {project};
 	} catch (err) {
 		error = err
 	}
@@ -49,6 +49,19 @@ module.exports.archiveProject = async (req, res, next) => {
 	}
 	next(error);
 }
+module.exports.updateProjectById = async (req, res, next) => {
+	let error;
+	try{
+		let projectId = req.params.id;
+		let projectUpdates = req.body;
+		let project = await updateProjectById(projectId, projectUpdates);
+		req.result = project;
+	} catch (err) {
+		error = err;
+		err.status = 400;
+	}
+	next(error);
+}
 
 module.exports.addUsersToProject = async (req, res, next) => {
 	let error;
@@ -82,6 +95,19 @@ module.exports.updateProject = async (req, res, next) => {
 		let projectId = req.params.projectId;
 		let fieldsToUpdate = req.body;
 		let project = await updateProject(projectId, fieldsToUpdate);
+		req.result = project;
+	} catch (err) {
+		error = err
+	}
+	next(error);
+}
+
+module.exports.removeUserFromProject = async (req, res, next) => {
+	let error;
+	try {
+		let projectId = req.params.projectId;
+		let userId = req.params.userId;
+		let project = await removeUserFromProject(projectId, userId);
 		req.result = project;
 	} catch (err) {
 		error = err

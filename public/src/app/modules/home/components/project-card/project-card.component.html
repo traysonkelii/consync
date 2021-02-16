@@ -1,8 +1,13 @@
-<mat-card class="clickable" (click)="test()">
+<mat-card class="clickable" (click)="goToProject()" *ngIf="projectData">
     <mat-card-header>
         <mat-card-title>{{projectData.title}}</mat-card-title>
     </mat-card-header>
     <mat-card-content>
+        <p>Description: {{projectData.description}}</p>
         <p>Ball in court items: {{projectData.inCourtItems}}</p>
-      </mat-card-content>
+        <p *ngIf="role === roles.level2 || role === roles.level3 || role === roles.admin">project-level analytics data
+        </p>
+        <p *ngIf="role === roles.level3 || role === roles.level3 || role === roles.admin">GC team members are performing
+        </p>
+    </mat-card-content>
 </mat-card>
