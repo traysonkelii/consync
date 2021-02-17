@@ -4,6 +4,7 @@ var path = require('path');
 
 const root = path.join(__dirname, '..', '..', '..', 'app/public');
 router.use('/channel', require('./channel/channelIndex'));
+router.use('/company', require('./company/companyIndex'));
 router.use('/healthcheck', require('./healthcheck'));
 router.use('/message', require('./message/messageIndex'));
 router.use('/project', require('./project/projectIndex'));

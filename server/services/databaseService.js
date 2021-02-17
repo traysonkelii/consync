@@ -7,6 +7,7 @@ const Thread = require('../lib/database/models/thread');
 const Message = require('../lib/database/models/message');
 const Task = require('../lib/database/models/task');
 const ObjectId = require('mongoose').Types.ObjectId;
+const Company = require('../lib/database/models/company');
 
 let databaseService = {};
 
@@ -185,6 +186,37 @@ databaseService.getTasksAssignedToUser = async (userId) => {
 databaseService.getTasksCreatedByUser = async (userId) => {
 	let tasks = await Task.find({assignerUserId: ObjectId(userId)})
 	return tasks;
+}
+
+databaseService.getCompanyById = async (companyId) => {
+	let company = await Company.findById(companyId);
+	return company;
+}
+
+databaseService.getCompanies = async (filters) => {
+	let companies = await Company.find(filters);
+	return companies;
+}
+
+databaseService.getUsersByCompanyId = async(companyId) => {
+	let users = await User.find({companyId: ObjectId(companyId)});
+	return users;
+}
+
+databaseService.createCompany = async(companyObj) => {
+	let company = new Company(companyObj);
+	await company.save();
+	return company;
+}
+
+databaseService.updateCompany = async (companyId, updateObj) => {
+	let company = await Company.findByIdAndUpdate(companyId, updateObj);
+	return company;
+}
+
+databaseService.archiveCompany = async (companyId) => {
+	let company = Company.findByIdAndUpdate(companyId, {status: 'archived'})
+	return company;
 }
 
 module.exports = databaseService;
