@@ -7,13 +7,12 @@ module.exports.createCompany = [
 ]
 
 module.exports.updateCompany = [
-	company.updateCompanyById,
+	company.updateCompany,
 	company.return
 ]
 
 module.exports.getCompanyById = [
 	company.getCompanyById,
-	users.getUsersByCompanyId,
 	company.return
 ]
 
