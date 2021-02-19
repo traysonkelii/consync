@@ -1,7 +1,6 @@
 const Project = require('../lib/database/models/project');
 const User = require('../lib/database/models/user');
 const Role = require('../lib/database/models/role');
-const Project = require('../lib/database/models/project');
 const Channel = require('../lib/database/models/channel');
 const Thread = require('../lib/database/models/thread');
 const Message = require('../lib/database/models/message');
