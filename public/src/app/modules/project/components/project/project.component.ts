@@ -1,4 +1,12 @@
 import { Component, Input, OnInit, Output, EventEmitter, ViewChild, ElementRef, SimpleChanges } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ChannelDialogData, NewChannelModalComponent } from '../new-channel-modal/new-channel-modal.component';
+
+export enum ProjectTabs {
+  item = 'item',
+  people = 'people',
+  commitments = 'commitments'
+}
 
 @Component({
   selector: 'project',
@@ -7,7 +15,7 @@ import { Component, Input, OnInit, Output, EventEmitter, ViewChild, ElementRef, 
 })
 export class ProjectComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   @Input() project: any;
   @Output() emitNewChannel = new EventEmitter();
@@ -15,28 +23,41 @@ export class ProjectComponent implements OnInit {
   newChannelTitle: string = '';
   newChannelDesc: string = '';
 
-  ngOnInit(): void { }
+  currentTab: ProjectTabs = ProjectTabs.item;
 
-  ngOnChanges(changes: SimpleChanges): void {
-    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
-    //Add '${implements OnChanges}' to the class.
-    console.log(changes);
-    this.ngOnInit();
-  }
+  ngOnInit(): void { }
+  opened: boolean = true;
 
   handleCreateChannel(event: any) {
-    const newChannelRequest = {
-      title: event.title,
-      description: event.description,
-      projectId: this.project.project._id,
-    }
-    this.emitNewChannel.emit(newChannelRequest)
   }
 
-}
+  handleTabChange(event: any) {
+    this.currentTab = event;
+  }
 
-/**
- * Size of pebble: # of messages
- * Plot by time = further right => later
- *
- */
+  createNewChannel(): void {
+
+    const data: ChannelDialogData = {
+      title: '',
+      description: ''
+    };
+
+    const dialogConfig: MatDialogConfig = { width: '250px', data };
+
+    const dialogRef = this.dialog.open(
+      NewChannelModalComponent,
+      dialogConfig
+    );
+
+    dialogRef.afterClosed().subscribe((result: { title: any; description: any; })=> {
+      if (result) {
+        const newChannelRequest = {
+          title: result.title,
+          description: result.description,
+          projectId: this.project.project._id,
+        }
+        this.emitNewChannel.emit(newChannelRequest)
+      }
+    });
+  }
+}

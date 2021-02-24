@@ -1,6 +1,27 @@
-<app-project-header (newChannel)="handleCreateChannel($event)"></app-project-header>
-<app-pebble-board [channels]="project.channels"></app-pebble-board>
-<div style="text-align: center; margin-top: 2%;" *ngIf="project">
+<div *ngIf="project">
+    <app-project-header (newChannel)="handleCreateChannel($event)" [projectTitle]="project.project.title"
+        (tabSelected)="handleTabChange($event)">
+    </app-project-header>
+    <mat-sidenav-container>
+        <mat-sidenav #sidenav [mode]="'side'" [(opened)]="opened">
+            <p>Project Metrics: </p>
+            <p>Project Descriptions: {{project.project.description}}</p>
+            <p><button mat-button (click)="sidenav.toggle()">hide</button></p>
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+            <p *ngIf="!opened"><button mat-button (click)="sidenav.toggle()">Show Sidebar</button></p>
+            <!-- <app-pebble-board [channels]="project.channels"></app-pebble-board> -->
+            <app-project-table *ngIf="currentTab === 'item'" [tableData]="project.channels"></app-project-table>
+            <div *ngIf="currentTab === 'people'"> people table</div>
+            <div *ngIf="currentTab === 'commitments'">commitment</div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+    <button mat-raised-button color="primary" (click)="createNewChannel()">New Item</button>
+</div>
+
+<!-- <div style="text-align: center; margin-top: 2%;" *ngIf="project">
     <p>Title: {{project.project.title}}</p>
     <p>Description: {{project.project.description}}</p>
-</div>
+    <p>{{project.channels | json}}</p>
+</div> -->

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pebble-board',
@@ -8,16 +9,14 @@ import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 export class PebbleBoardComponent implements OnInit {
 
   @Input() channels: any;
-  constructor() { }
+  constructor(private route: Router) { }
 
   ngOnInit(): void { 
-    // console.log(this.channels);
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
-    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
-    //Add '${implements OnChanges}' to the class.
-    this.ngOnInit();
+  goToItem(channel:any) {
+    console.log(channel);
+    this.route.navigate(['/item',channel._id])
   }
+
 }

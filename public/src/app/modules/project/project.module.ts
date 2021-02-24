@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { ProjectRoutingModule } from './project-routing.module';
 import { ProjectShellComponent } from './project-shell/project-shell.component';
 import { StoreModule } from '@ngrx/store';
@@ -21,10 +20,19 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { NewChannelModalComponent } from './components/new-channel-modal/new-channel-modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
-
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatTableModule } from '@angular/material/table';
+import { ProjectTableComponent } from './components/project-table/project-table.component';
 
 @NgModule({
-  declarations: [ProjectComponent, ProjectShellComponent, ProjectHeaderComponent, PebbleBoardComponent, NewChannelModalComponent],
+  declarations: [
+    ProjectComponent, 
+    ProjectShellComponent, 
+    ProjectHeaderComponent, 
+    PebbleBoardComponent, 
+    NewChannelModalComponent, 
+    ProjectTableComponent,
+  ],
   imports: [
     CommonModule,
     ProjectRoutingModule,
@@ -35,8 +43,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatMenuModule,
     MatInputModule,
     MatFormFieldModule,
+    MatTabsModule,
     MatTooltipModule,
     MatDialogModule,
+    MatTableModule,
     StoreModule.forFeature('project', projectReducer),
     EffectsModule.forFeature([ProjectEffects]),
     FormsModule,
