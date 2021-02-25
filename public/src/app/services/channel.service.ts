@@ -11,9 +11,6 @@ export class ChannelService {
   constructor(private http: HttpClient) { }
 
   createChannel(newChannelRequest: any): Observable<any> {
-    if (environment.production) {
-      return this.http.post(`${environment.baseUrl}/channel/`, newChannelRequest);
-    }
-    return of({});
+    return this.http.post(`${environment.baseUrl}/channel/`, newChannelRequest);
   }
 }

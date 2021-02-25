@@ -13,10 +13,10 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const app = express();
-
+let dev;
 var allowCrossDomain = function (req, res, next) {
-    
-    if (req.headers && req.headers.origin && req.headers.origin.indexOf('http://localhost') === 0) // dev
+    dev = req.headers && req.headers.origin && req.headers.origin.indexOf('http://localhost') === 0;
+    if (dev)
     {
         res.header('Access-Control-Allow-Origin', req.headers.origin);
         res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, OPTIONS');
@@ -52,6 +52,7 @@ var initPassport = require('./lib/passport/config.js');
 app.use(router.use('/', require('./routes/auth/auth')));
 app.use(function (req, res, next) {
     if (req.user) { return next(); }
+    if (dev) { return next(); }
 	req.session.returnTo = req.originalUrl;
 	res.redirect('/login');
 });

@@ -1,15 +1,18 @@
 <mat-toolbar color="secondary">
     <mat-toolbar-row>
-        <button mat-button [matMenuTriggerFor]="categories">Categories</button>
-        <mat-menu #categories="matMenu">
+        <p *ngIf="projectTitle">{{projectTitle}}</p>
+        <span class="spacer"></span>
+        <button mat-button (click)="peopleClick()">Collaborators</button>
+        <!-- <mat-menu #categories="matMenu">
             <button mat-menu-item>Category 1</button>
             <button mat-menu-item>Category 2</button>
-        </mat-menu>
-        <button mat-button [matMenuTriggerFor]="items">Items</button>
-        <mat-menu #items="matMenu">
+        </mat-menu> -->
+        <button mat-button (click)="itemClick()">Items</button>
+        <!-- <mat-menu #items="matMenu">
             <button mat-menu-item (click)="createNewChannel()">New Item</button>
             <button mat-menu-item>Item 2</button>
-        </mat-menu>
+        </mat-menu> -->
+        <button mat-button (click)="commitmentsClick()">Commitments</button>
         <span class="spacer"></span>
         <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
             <mat-icon>autorenew</mat-icon>

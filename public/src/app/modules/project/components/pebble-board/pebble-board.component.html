@@ -3,7 +3,8 @@
         <div *ngFor="let channel of channels">
             <div class="circle" 
             matTooltip="{{channel.title}}" 
-            [matTooltipPosition]="'above'">
+            [matTooltipPosition]="'above'"
+            (click)="goToItem(channel)">
             </div>
         </div>
     </div>
