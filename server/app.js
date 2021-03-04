@@ -10,7 +10,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const session = require('express-session');
 const dotenv = require('dotenv');
-dotenv.config();
+dotenv.config({path: __dirname + '/.env'});
 
 const app = express();
 let dev;
@@ -53,6 +53,7 @@ app.use(router.use('/', require('./routes/auth/auth')));
 app.use(function (req, res, next) {
     if (req.user) { return next(); }
     if (dev) { return next(); }
+    if (process.env.NODE_ENV === 'DEV') { return next(); }
 	req.session.returnTo = req.originalUrl;
 	res.redirect('/login');
 });
