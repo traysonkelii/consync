@@ -1,9 +1,9 @@
 const project = require('../../middleware/project');
-const channel = require('../../middleware/channel');
+const item = require('../../middleware/item');
 
 module.exports.getProject = [
 	project.getProjectById,
-	channel.getChannelsByProjectId,
+	item.getItemsByProjectId,
 	project.return
 ]
 

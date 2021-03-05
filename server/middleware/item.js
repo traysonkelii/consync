@@ -1,6 +1,25 @@
-const {getItemsByProjectId, createItem, getItemById, updateItemById} = require("../services/databaseService");
+const { model } = require("../lib/database/models/user");
+const {getItemsByProjectId, createItem, getItemById, updateItemById, create} = require("../services/databaseService");
 
 module.exports = {};
+
+module.exports.createItem = async(req, res, next) => {
+	let error;
+	try {
+		let item = await create('item', req.body);
+		
+		if(!req.result){
+			req.result = {item};
+		} else {
+			req.result.item = item;
+		}
+	}
+	catch (err) {
+		error = err;
+		error.status = 400;
+	}
+	next(error);
+}
 
 module.exports.getItemsByProjectId = async (req, res, next) => {
 	let error;

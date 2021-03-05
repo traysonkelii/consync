@@ -1,5 +1,5 @@
 const company = require('../../middleware/company');
-const thread = require('../../middleware/thread');
+const subItem = require('../../middleware/subItem');
 
 module.exports.createCompany = [
 	company.createCompany,

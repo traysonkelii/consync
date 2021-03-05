@@ -1,0 +1,80 @@
+const {getSubItemsByItemId, getSubItemById, updateSubItem, createSubItem} = require("../services/databaseService");
+
+module.exports = {};
+
+module.exports.getSubItemsByItemId = async (req, res, next) => {
+	let error;
+	try {
+		let itemId = req.params.id;
+		let subItems = await getSubItemsByItemId(itemId);
+		if(req.result) {
+			req.result.subItems = subItems;
+		} else {
+			req.result = {subItems}
+		}
+	}
+	catch (err) {
+		error = err;
+		error.status = 400;
+	}
+	next(error);
+};
+
+module.exports.getSubItemById = async (req, res, next) => {
+	let error;
+	try {
+		let subItemId = req.params.id;
+		let subItem = await getSubItemById(subItemId);
+		req.result = {subItem};
+	} catch (err) {
+		error = err;
+		error.status = 400;
+	}
+	next(error);
+}
+
+module.exports.updateSubItem = async (req, res, next) => {
+	let error;
+	try {
+		let subItemId = req.params.id;
+		let subItemUpdates = req.body;
+		let subItem = await updateSubItem(subItemId, subItemUpdates);
+		req.result = subItem;
+	} catch (err) {
+		error = err;
+		error.status = 400;
+	}
+	next(error);
+}
+
+module.exports.archiveSubItem = async (req, res, next) => {
+	let error;
+	try {
+		let subItemId = req.params.id;
+		let subItemUpdates = {status: "archived"};
+		let subItem = await updateSubItem(subItemId, subItemUpdates);
+		req.result = subItem;
+	} catch (err) {
+		error = err;
+		error.status = 400;
+	}
+	next(error);
+}
+
+
+module.exports.createSubItem = async (req, res, next) => {
+	let error;
+	try {
+		let subItemObj = req.body;
+		let subItem = await createSubItem(subItemObj);
+		req.result = subItem;
+	} catch (err) {
+		error = err;
+		error.status = 400;
+	}
+	next(error);
+}
+
+module.exports.return = (req, res, next) => {
+	res.json(req.result);
+}

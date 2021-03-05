@@ -1,12 +1,12 @@
-const { getMessagesByThreadId, createMessage, getMessageById, updateMessage } = require("../services/databaseService");
+const { getMessagesBySubItemId, createMessage, getMessageById, updateMessage } = require("../services/databaseService");
 
 module.exports = {};
 
-module.exports.getMessagesByThreadId = async (req, res, next) => {
+module.exports.getMessagesBySubItemId = async (req, res, next) => {
 	let error;
 	try {
-		let threadId = req.params.id;
-		let messages = await getMessagesByThreadId(threadId);
+		let subItemId = req.params.id;
+		let messages = await getMessagesBySubItemId(subItemId);
 		if(!req.result) {
 			req.result = {messages};
 		} else {
