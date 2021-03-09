@@ -49,19 +49,6 @@ module.exports.archiveProject = async (req, res, next) => {
 	}
 	next(error);
 }
-module.exports.updateProjectById = async (req, res, next) => {
-	let error;
-	try{
-		let projectId = req.params.id;
-		let projectUpdates = req.body;
-		let project = await updateProjectById(projectId, projectUpdates);
-		req.result = project;
-	} catch (err) {
-		error = err;
-		err.status = 400;
-	}
-	next(error);
-}
 
 module.exports.addUsersToProject = async (req, res, next) => {
 	let error;

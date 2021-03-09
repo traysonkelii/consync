@@ -1,0 +1,32 @@
+version: "3.9"
+services:
+  web:
+    container_name: consync
+    build: .
+    ports:
+      - "8001:8001"
+    volumes:
+      - .:/app/server
+    links:
+      - mongo:consync-mongodb
+    depends_on:
+      - mongo
+    environment:
+    - NODE_ENV=DEV
+
+  mongo:
+    container_name: consync-mongodb
+    image: mongo
+    restart: always
+    volumes:
+      - ./mockDatabase:/docker-entrypoint-initdb.d
+    environment:
+      MONGO_INITDB_DATABASE: consync
+    ports: #Host:Container
+      - "27017:27017"
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081

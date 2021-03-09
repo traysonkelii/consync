@@ -1,14 +1,14 @@
 const project = require('../../middleware/project');
-const channel = require('../../middleware/channel');
+const item = require('../../middleware/item');
 
 module.exports.getProject = [
 	project.getProjectById,
-	channel.getChannelsByProjectId,
+	item.getItemsByProjectId,
 	project.return
 ]
 
 module.exports.updateProject = [
-	project.updateProjectById,
+	project.updateProject,
 	project.return
 ]
 
@@ -29,11 +29,6 @@ module.exports.archiveProject = [
 
 module.exports.updateProjectStatus = [
 	project.updateProjectStatus,
-	project.return
-]
-
-module.exports.updateProject = [
-	project.updateProject,
 	project.return
 ]
 

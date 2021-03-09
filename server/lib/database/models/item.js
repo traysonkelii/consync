@@ -1,6 +1,6 @@
 let mongoose = require('mongoose');
 
-let ChannelSchema = mongoose.Schema(
+let ItemSchema = mongoose.Schema(
 	{
 		title: {type: String, required: [true, 'title is a required field']},
 		description: {type: String},
@@ -14,4 +14,4 @@ let ChannelSchema = mongoose.Schema(
 	}
 );
 
-module.exports = mongoose.model('Channel', ChannelSchema);
+module.exports = mongoose.model('Item', ItemSchema);

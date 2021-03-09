@@ -1,65 +1,6 @@
-const {getThreadsByChannelId, getThreadById, updateThread, createThread} = require("../services/databaseService");
+const { getThreadsBySubItemId, createThread, getThreadById, updateThread, getThreadsByThreadId } = require("../services/databaseService");
 
 module.exports = {};
-
-module.exports.getThreadsByChannelId = async (req, res, next) => {
-	let error;
-	try {
-		let channelId = req.params.id;
-		let threads = await getThreadsByChannelId(channelId);
-		if(req.result) {
-			req.result.threads = threads;
-		} else {
-			req.result = {threads}
-		}
-	}
-	catch (err) {
-		error = err;
-		error.status = 400;
-	}
-	next(error);
-};
-
-module.exports.getThreadById = async (req, res, next) => {
-	let error;
-	try {
-		let threadId = req.params.id;
-		let thread = await getThreadById(threadId);
-		req.result = {thread};
-	} catch (err) {
-		error = err;
-		error.status = 400;
-	}
-	next(error);
-}
-
-module.exports.updateThread = async (req, res, next) => {
-	let error;
-	try {
-		let threadId = req.params.id;
-		let threadUpdates = req.body;
-		let thread = await updateThread(threadId, threadUpdates);
-		req.result = thread;
-	} catch (err) {
-		error = err;
-		error.status = 400;
-	}
-	next(error);
-}
-
-module.exports.archiveThread = async (req, res, next) => {
-	let error;
-	try {
-		let threadId = req.params.id;
-		let threadUpdates = {status: "archived"};
-		let thread = await updateThread(threadId, threadUpdates);
-		req.result = thread;
-	} catch (err) {
-		error = err;
-		error.status = 400;
-	}
-	next(error);
-}
 
 
 module.exports.createThread = async (req, res, next) => {
@@ -67,10 +8,57 @@ module.exports.createThread = async (req, res, next) => {
 	try {
 		let threadObj = req.body;
 		let thread = await createThread(threadObj);
-		req.result = thread;
+		req.result = { thread };
 	} catch (err) {
 		error = err;
-		error.status = 400;
+		err.status = 400;
+	}
+	next(error);
+}
+
+module.exports.createThreadForNewMessage = async (req, res, next) => {
+	let error;
+	try {
+		if(req.body.threadId){
+			return next();
+		}
+		let threadObj = {
+			projectId: req.body.projectId,
+			itemId: req.body.itemId,
+			subItemId: req.body.subItemId,
+			partricipants: req.body.mentionedUserIds
+		}
+		let thread = await createThread(threadObj);
+		req.body.threadId = thread._id;
+	} catch (err) {
+		error = err;
+		err.status = 400;
+	}
+	next(error);
+}
+
+module.exports.getThreadById = async (req, res, next) => {
+	let error;
+	try {
+		let threadId = req.params.id;
+		let thread = await getThreadById(threadId);
+		req.result = { thread };
+	} catch (err) {
+		error = err;
+		err.status = 400;
+	}
+	next(error);
+}
+
+module.exports.getThreadsBySubItemId = async (req, res, next) => {
+	let error;
+	try {
+		let threadId = req.params.id;
+		let threads = await getThreadsBySubItemId(threadId);
+		req.result.threads = threads;
+	} catch (err) {
+		error = err;
+		err.status = 400;
 	}
 	next(error);
 }

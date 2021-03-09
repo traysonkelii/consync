@@ -1,12 +1,13 @@
 const Project = require('../lib/database/models/project');
 const User = require('../lib/database/models/user');
 const Role = require('../lib/database/models/role');
-const Channel = require('../lib/database/models/channel');
-const Thread = require('../lib/database/models/thread');
+const Item = require('../lib/database/models/item');
+const SubItem = require('../lib/database/models/subItem');
 const Message = require('../lib/database/models/message');
 const Task = require('../lib/database/models/task');
 const ObjectId = require('mongoose').Types.ObjectId;
 const Company = require('../lib/database/models/company');
+const Thread = require('../lib/database/models/thread');
 
 let databaseService = {};
 
@@ -91,34 +92,34 @@ databaseService.updateProject = async (projectId, fieldsToUpdate) => {
 	return project;
 }
 
-databaseService.getChannelById = async (channelId) => {
-	let channel = await Channel.findById(channelId).populate('members');
-	return channel;
+databaseService.getItemById = async (itemId) => {
+	let item = await Item.findById(itemId).populate('members');
+	return item;
 }
 
-databaseService.getChannelsByProjectId = async (projectId) => {
-	let channels = await Channel.find({projectId: ObjectId(projectId)}).exec();
-	return channels;
+databaseService.getItemsByProjectId = async (projectId) => {
+	let items = await Item.find({projectId: ObjectId(projectId)}).exec();
+	return items;
 }
 
-databaseService.createChannel = async (channelObj) => {
-	let channel = new Channel(channelObj);
-	await channel.save();
-	return channel;
+databaseService.createItem = async (itemObj) => {
+	let item = new Item(itemObj);
+	await item.save();
+	return item;
 }
 
-databaseService.updateChannelById = async (channelId, channelUpdates) => {
-	let channel = await Channel.findByIdAndUpdate(channelId, channelUpdates);
-	return channel;	
+databaseService.updateItemById = async (itemId, itemUpdates) => {
+	let item = await Item.findByIdAndUpdate(itemId, itemUpdates);
+	return item;
 }
 
-databaseService.getThreadsByChannelId = async (channelId) => {
-	let threads = await Thread.find({channelId: ObjectId(channelId), status: {$ne: "archvied"}}).populate('members');
-	return threads;
+databaseService.getSubItemsByItemId = async (itemId) => {
+	let subItems = await SubItem.find({itemId: ObjectId(itemId), status: {$ne: "archvied"}}).populate('members');
+	return subItems;
 }
 
-databaseService.getMessagesByThreadId = async (threadId) => {
-	let messages = await Message.find({threadId: ObjectId(threadId), status: {$ne: "archvied"}}).populate('authorId');
+databaseService.getMessagesBySubItemId = async (subItemId) => {
+	let messages = await Message.find({subItemId: ObjectId(subItemId), status: {$ne: "archvied"}}).populate('authorId');
 	return messages;
 }
 
@@ -145,20 +146,20 @@ databaseService.getTaskById = async (taskId) => {
 	return task;
 }
 
-databaseService.getThreadById = async (threadId) => {
-	let thread = await Thread.findById(threadId);
-	return thread;
+databaseService.getSubItemById = async (subItemId) => {
+	let subItem = await SubItem.findById(subItemId);
+	return subItem;
 }
 
-databaseService.createThread = async (threadObj) => {
-	const thread = new Thread(threadObj);
-	await thread.save();
-	return thread;
+databaseService.createSubItem = async (subItemObj) => {
+	const subItem = new SubItem(subItemObj);
+	await subItem.save();
+	return subItem;
 }
 
-databaseService.updateThread = async (threadId, threadUpdates) => {
-	let thread = await Thread.findByIdAndUpdate(threadId, threadUpdates);
-	return thread;
+databaseService.updateSubItem = async (subItemId, subItemUpdates) => {
+	let subItem = await SubItem.findByIdAndUpdate(subItemId, subItemUpdates);
+	return subItem;
 }
 
 databaseService.createMessage = async (messageObj) => {
@@ -168,7 +169,7 @@ databaseService.createMessage = async (messageObj) => {
 }
 
 databaseService.getMessageById = async (messageId) => {
-	let message = await Message.findById(messageId);
+	let message = await Message.findById(messageId).populate('authorId');
 	return message;
 }
 
@@ -214,8 +215,29 @@ databaseService.updateCompany = async (companyId, updateObj) => {
 }
 
 databaseService.archiveCompany = async (companyId) => {
-	let company = Company.findByIdAndUpdate(companyId, {status: 'archived'})
+	let company = await Company.findByIdAndUpdate(companyId, {status: 'archived'})
 	return company;
+}
+
+databaseService.getMessagesByParentId = async (parentName, parentId) => {
+	let messages = await Message.find({[parentName]: ObjectId(parentId)}).populate('authorId');
+	return messages;
+}
+
+databaseService.getThreadsByParentId = async (parentName, parentId) => {
+	let threads = await Thread.find({[parentName]: ObjectId(parentId)});
+	return threads;
+}
+
+databaseService.getThreadById = async (threadId) => {
+	let thread = await Thread.find({[parentName]: ObjectId(parentId)}).populate('authorId');
+	return thread;
+}
+
+databaseService.createThread = async (threadObj) => {
+	let thread = new Thread(threadObj);
+	await thread.save();
+	return thread;
 }
 
 module.exports = databaseService;
