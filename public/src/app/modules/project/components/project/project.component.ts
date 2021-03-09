@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter, ViewChild, ElementRef, SimpleChanges } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { ChannelDialogData, NewChannelModalComponent } from '../new-channel-modal/new-channel-modal.component';
+import { ItemDialogData, NewItemModalComponent } from '../new-item-modal/new-item-modal.component';
 
 export enum ProjectTabs {
   item = 'item',
@@ -18,26 +18,26 @@ export class ProjectComponent implements OnInit {
   constructor(public dialog: MatDialog) { }
 
   @Input() project: any;
-  @Output() emitNewChannel = new EventEmitter();
+  @Output() emitNewItem = new EventEmitter();
 
-  newChannelTitle: string = '';
-  newChannelDesc: string = '';
+  newItemTitle: string = '';
+  newItemDesc: string = '';
 
   currentTab: ProjectTabs = ProjectTabs.item;
 
   ngOnInit(): void { }
   opened: boolean = true;
 
-  handleCreateChannel(event: any) {
+  handleCreateItem(event: any) {
   }
 
   handleTabChange(event: any) {
     this.currentTab = event;
   }
 
-  createNewChannel(): void {
+  createNewItem(): void {
 
-    const data: ChannelDialogData = {
+    const data: ItemDialogData = {
       title: '',
       description: ''
     };
@@ -45,18 +45,18 @@ export class ProjectComponent implements OnInit {
     const dialogConfig: MatDialogConfig = { width: '250px', data };
 
     const dialogRef = this.dialog.open(
-      NewChannelModalComponent,
+      NewItemModalComponent,
       dialogConfig
     );
 
     dialogRef.afterClosed().subscribe((result: { title: any; description: any; })=> {
       if (result) {
-        const newChannelRequest = {
+        const newItemRequest = {
           title: result.title,
           description: result.description,
           projectId: this.project.project._id,
         }
-        this.emitNewChannel.emit(newChannelRequest)
+        this.emitNewItem.emit(newItemRequest)
       }
     });
   }

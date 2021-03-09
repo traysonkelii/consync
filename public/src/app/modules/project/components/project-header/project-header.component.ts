@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NewProjectModalComponent } from '@modules/admin/component/new-project-modal/new-project-modal.component';
-import { ChannelDialogData } from '../new-channel-modal/new-channel-modal.component';
+import { ItemDialogData } from '../new-item-modal/new-item-modal.component';
 import { ProjectTabs } from '../project/project.component';
 
 @Component({
@@ -11,7 +11,7 @@ import { ProjectTabs } from '../project/project.component';
 })
 export class ProjectHeaderComponent implements OnInit {
 
-  @Output() newChannel = new EventEmitter;
+  @Output() newItem = new EventEmitter;
   @Output() tabSelected = new EventEmitter;
   @Input() projectTitle: string | undefined;
 
@@ -32,9 +32,9 @@ export class ProjectHeaderComponent implements OnInit {
     this.tabSelected.emit(ProjectTabs.commitments);
   }
   
-  createNewChannel(): void {
+  createNewItem(): void {
 
-    const data: ChannelDialogData = {
+    const data: ItemDialogData = {
       title: '',
       description: ''
     };
@@ -48,7 +48,7 @@ export class ProjectHeaderComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.newChannel.emit(result);
+        this.newItem.emit(result);
       }
     });
   }

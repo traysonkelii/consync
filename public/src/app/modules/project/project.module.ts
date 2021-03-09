@@ -17,7 +17,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatInputModule } from '@angular/material/input';
 import { PebbleBoardComponent } from './components/pebble-board/pebble-board.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { NewChannelModalComponent } from './components/new-channel-modal/new-channel-modal.component';
+import { NewItemModalComponent } from './components/new-item-modal/new-item-modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -30,7 +30,7 @@ import { ProjectTableComponent } from './components/project-table/project-table.
     ProjectShellComponent, 
     ProjectHeaderComponent, 
     PebbleBoardComponent, 
-    NewChannelModalComponent, 
+    NewItemModalComponent, 
     ProjectTableComponent,
   ],
   imports: [

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NewChannelModalComponent } from './new-channel-modal.component';
+import { NewItemModalComponent } from './new-item-modal.component';
 
-describe('NewChannelModalComponent', () => {
-  let component: NewChannelModalComponent;
-  let fixture: ComponentFixture<NewChannelModalComponent>;
+describe('NewItemModalComponent', () => {
+  let component: NewItemModalComponent;
+  let fixture: ComponentFixture<NewItemModalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NewChannelModalComponent ]
+      declarations: [ NewItemModalComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NewChannelModalComponent);
+    fixture = TestBed.createComponent(NewItemModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
