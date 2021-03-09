@@ -6,6 +6,7 @@ let SubItemSchema = mongoose.Schema(
 		itemId: {type: mongoose.Schema.Types.ObjectId, required: 'itemId is a required field', ref: 'Item'},
 		projectId: {type: mongoose.Schema.Types.ObjectId, required: 'projectId is a required field', ref: 'Project'},
 		members: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
+		type: {type: String, enum: ['main', 'default'], default: 'default'},
 		status: {type: String, enum: ['active', 'archived'], default: "active"}
 	}, {
 	timestamps: true,

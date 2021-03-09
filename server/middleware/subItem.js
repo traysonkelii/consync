@@ -28,6 +28,7 @@ module.exports.createMainSubItem = async(req, res, next) => {
 		const members = req.result.item.members;
 		const subItemObj = {
 			title: 'Main',
+			type: 'main',
 			itemId,
 			projectId,
 			members
