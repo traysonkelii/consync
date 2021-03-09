@@ -7,6 +7,7 @@ const Message = require('../lib/database/models/message');
 const Task = require('../lib/database/models/task');
 const ObjectId = require('mongoose').Types.ObjectId;
 const Company = require('../lib/database/models/company');
+const Thread = require('../lib/database/models/thread');
 
 let databaseService = {};
 
@@ -168,7 +169,7 @@ databaseService.createMessage = async (messageObj) => {
 }
 
 databaseService.getMessageById = async (messageId) => {
-	let message = await Message.findById(messageId);
+	let message = await Message.findById(messageId).populate('authorId');
 	return message;
 }
 
@@ -214,8 +215,29 @@ databaseService.updateCompany = async (companyId, updateObj) => {
 }
 
 databaseService.archiveCompany = async (companyId) => {
-	let company = Company.findByIdAndUpdate(companyId, {status: 'archived'})
+	let company = await Company.findByIdAndUpdate(companyId, {status: 'archived'})
 	return company;
+}
+
+databaseService.getMessagesByParentId = async (parentName, parentId) => {
+	let messages = await Message.find({[parentName]: ObjectId(parentId)}).populate('authorId');
+	return messages;
+}
+
+databaseService.getThreadsByParentId = async (parentName, parentId) => {
+	let threads = await Thread.find({[parentName]: ObjectId(parentId)});
+	return threads;
+}
+
+databaseService.getThreadById = async (threadId) => {
+	let thread = await Thread.find({[parentName]: ObjectId(parentId)}).populate('authorId');
+	return thread;
+}
+
+databaseService.createThread = async (threadObj) => {
+	let thread = new Thread(threadObj);
+	await thread.save();
+	return thread;
 }
 
 module.exports = databaseService;

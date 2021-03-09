@@ -6,7 +6,7 @@ module.exports = {};
 module.exports.createItem = async(req, res, next) => {
 	let error;
 	try {
-		let item = await create('item', req.body);
+		let item = await createItem(req.body);
 		
 		if(!req.result){
 			req.result = {item};
@@ -39,19 +39,6 @@ module.exports.getItemsByProjectId = async (req, res, next) => {
 	}
 	next(error);
 };
-
-module.exports.createItem = async (req, res, next) => {
-	let error;
-	try{
-		let itemObj = req.body;
-		let item = await createItem(itemObj);
-		req.result = item;
-	} catch (err) {
-		error = err;
-		err.status = 400;
-	}
-	next(error);
-}
 
 module.exports.getItemById = async (req, res, next) => {
 	let error;

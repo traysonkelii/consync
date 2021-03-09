@@ -1,4 +1,4 @@
-const { getMessagesBySubItemId, createMessage, getMessageById, updateMessage } = require("../services/databaseService");
+const { getMessagesBySubItemId, createMessage, getMessageById, updateMessage, getMessagesByParentId } = require("../services/databaseService");
 
 module.exports = {};
 
@@ -7,8 +7,8 @@ module.exports.getMessagesBySubItemId = async (req, res, next) => {
 	try {
 		let subItemId = req.params.id;
 		let messages = await getMessagesBySubItemId(subItemId);
-		if(!req.result) {
-			req.result = {messages};
+		if (!req.result) {
+			req.result = { messages };
 		} else {
 			req.result.messages = messages;
 		}
@@ -22,8 +22,10 @@ module.exports.getMessagesBySubItemId = async (req, res, next) => {
 
 module.exports.createMessage = async (req, res, next) => {
 	let error;
-	try{
+	try {
 		let messageObj = req.body;
+		messageObj.authorId = req.user._id;
+		messageObj.unreadBy = req.body.mentionedUserIds;
 		let message = await createMessage(messageObj);
 		req.result = message;
 	} catch (err) {
@@ -38,7 +40,7 @@ module.exports.getMessageById = async (req, res, next) => {
 	try {
 		let messageId = req.params.id;
 		let message = await getMessageById(messageId);
-		req.result = {message};
+		req.result = { message };
 	} catch (err) {
 		error = err;
 		err.status = 400;
@@ -48,7 +50,7 @@ module.exports.getMessageById = async (req, res, next) => {
 
 module.exports.updateMessageById = async (req, res, next) => {
 	let error;
-	try{
+	try {
 		let messageId = req.params.id;
 		let messageUpdates = req.body;
 		let message = await updateMessage(messageId, messageUpdates);
@@ -62,11 +64,24 @@ module.exports.updateMessageById = async (req, res, next) => {
 
 module.exports.archiveMessage = async (req, res, next) => {
 	let error;
-	try{
+	try {
 		let messageId = req.params.id;
-		let messageUpdates = {status: 'archived'};
+		let messageUpdates = { status: 'archived' };
 		let message = await updateMessage(messageId, messageUpdates);
 		req.result = message;
+	} catch (err) {
+		error = err;
+		err.status = 400;
+	}
+	next(error);
+}
+
+module.exports.getMessagesByThreadId = async (req, res, next) => {
+	let error;
+	try {
+		let threadId = req.params.id;
+		let messages = await getMessagesByParentId('threadId', threadId);
+		req.result.messages = messages;
 	} catch (err) {
 		error = err;
 		err.status = 400;

@@ -3,6 +3,7 @@ const subItem = require('../../middleware/subItem');
 
 module.exports.createItem = [
 	item.createItem,
+	subItem.createMainSubItem,
 	item.return
 ]
 

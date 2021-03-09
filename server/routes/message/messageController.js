@@ -1,7 +1,9 @@
 const message = require('../../middleware/message');
 const task = require('../../middleware/task');
+const thread = require('../../middleware/thread');
 
 module.exports.createMessage = [
+	thread.createThreadForNewMessage,
 	message.createMessage,
 	message.return
 ]

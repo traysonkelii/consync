@@ -20,6 +20,31 @@ module.exports.getSubItemsByItemId = async (req, res, next) => {
 	next(error);
 };
 
+module.exports.createMainSubItem = async(req, res, next) => {
+	let error;
+	try {
+		const itemId = req.result.item._id;
+		const projectId = req.result.item.projectId;
+		const members = req.result.item.members;
+		const subItemObj = {
+			title: 'Main',
+			itemId,
+			projectId,
+			members
+		}
+		let subItem = await createSubItem(subItemObj);
+		if(!req.result){
+			req.result = {subItem};
+		} else {
+			req.result.subItem = subItem
+		}
+	} catch (err) {
+		error = err;
+		error.status = 400;
+	}
+	next(error);
+}
+
 module.exports.getSubItemById = async (req, res, next) => {
 	let error;
 	try {

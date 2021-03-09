@@ -25,11 +25,11 @@ router.get('/callback', function (req, res, next) {
 		user.auth0 = auth0User;
 		user.data = await databaseService.getUserByEmail(auth0User._json.email);
 		user.permissions = await databaseService.getPermissionsForRoles(user.data.userRoles);
-		req.logIn(user, function (err) {
+		req.login(user, function (err) {
 			if (err) { return next(err); }
 			const returnTo = req.session.returnTo;
 			delete req.session.returnTo;
-			res.redirect('/home');
+			res.redirect(returnTo || '/home');
 		});
 	})(req, res, next);
 });

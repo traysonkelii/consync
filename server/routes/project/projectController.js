@@ -8,7 +8,7 @@ module.exports.getProject = [
 ]
 
 module.exports.updateProject = [
-	project.updateProjectById,
+	project.updateProject,
 	project.return
 ]
 
@@ -29,11 +29,6 @@ module.exports.archiveProject = [
 
 module.exports.updateProjectStatus = [
 	project.updateProjectStatus,
-	project.return
-]
-
-module.exports.updateProject = [
-	project.updateProject,
 	project.return
 ]
 
