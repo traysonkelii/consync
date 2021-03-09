@@ -8,15 +8,15 @@ import { Router } from '@angular/router';
 })
 export class PebbleBoardComponent implements OnInit {
 
-  @Input() channels: any;
+  @Input() items: any;
   constructor(private route: Router) { }
 
   ngOnInit(): void { 
   }
 
-  goToItem(channel:any) {
-    console.log(channel);
-    this.route.navigate(['/item',channel._id])
+  goToItem(item:any) {
+    console.log(item);
+    this.route.navigate(['/item',item._id])
   }
 
 }

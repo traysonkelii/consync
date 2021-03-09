@@ -6,11 +6,11 @@ import { Observable, of } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ChannelService {
+export class ItemService {
 
   constructor(private http: HttpClient) { }
 
-  createChannel(newChannelRequest: any): Observable<any> {
-    return this.http.post(`${environment.baseUrl}/channel/`, newChannelRequest);
+  createItem(newItemRequest: any): Observable<any> {
+    return this.http.post(`${environment.baseUrl}/item/`, newItemRequest);
   }
 }

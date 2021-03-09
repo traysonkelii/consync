@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { ChannelService } from "@services/channel.service";
+import { ItemService } from "@services/item.service";
 import { ProjectService } from "@services/project.service";
 import { map, mergeMap } from "rxjs/operators";
 import * as ProjectActions from './project.action';
@@ -10,7 +10,7 @@ export class ProjectEffects {
     constructor(
         private actions$: Actions,
         private projectService: ProjectService,
-        private channelService: ChannelService,
+        private itemService: ItemService,
     ) { }
 
     loadProject$ = createEffect(() => {
@@ -22,11 +22,11 @@ export class ProjectEffects {
         );
     });
 
-    createChannel$ = createEffect(() => {
+    createItem$ = createEffect(() => {
         return this.actions$.pipe(
-            ofType(ProjectActions.createNewChannel),
-            mergeMap((newChannelRequest) => this.channelService.createChannel(newChannelRequest).pipe(
-                map((channel: any) => ProjectActions.createNewChannelSuccess(channel)),
+            ofType(ProjectActions.createNewItem),
+            mergeMap((newItemRequest) => this.itemService.createItem(newItemRequest).pipe(
+                map((item: any) => ProjectActions.createNewItemSuccess(item)),
             ))
         );
     });

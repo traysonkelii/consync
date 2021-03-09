@@ -1,5 +1,5 @@
 import { createFeatureSelector, createReducer, createSelector, on } from "@ngrx/store"
-import { ChannelService } from "@services/channel.service";
+import { ItemService } from "@services/item.service";
 import * as ProjectAction from './project.action';
 
 export interface ProjectState {
@@ -16,12 +16,12 @@ export const projectReducer = createReducer<ProjectState>(
             project: action.project
         }
     }),
-    on(ProjectAction.createNewChannelSuccess, (state, action): ProjectState => {
-        // state.project.channels.push(action);
+    on(ProjectAction.createNewItemSuccess, (state, action): ProjectState => {
+        // state.project.items.push(action);
         return {
             ...state,
             project: {
-                channels: state.project.channels.push(action)
+                items: state.project.items.push(action)
             }
         }
     })
