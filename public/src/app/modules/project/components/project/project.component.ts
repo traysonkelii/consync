@@ -49,7 +49,7 @@ export class ProjectComponent implements OnInit {
       dialogConfig
     );
 
-    dialogRef.afterClosed().subscribe((result: { title: any; description: any; })=> {
+    dialogRef.afterClosed().subscribe((result: { title: any; description: any; }) => {
       if (result) {
         const newItemRequest = {
           title: result.title,
