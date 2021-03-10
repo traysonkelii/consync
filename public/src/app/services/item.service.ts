@@ -10,7 +10,12 @@ export class ItemService {
 
   constructor(private http: HttpClient) { }
 
+<<<<<<< HEAD
   createItem(newItemRequest: any): Observable<any> {
     return this.http.post(`${environment.baseUrl}/item/`, newItemRequest);
+=======
+  getItem(itemId: any): Observable<any> {
+    return this.http.get(`${environment.baseUrl}/channel/${itemId}`);
+>>>>>>> updated items
   }
 }
