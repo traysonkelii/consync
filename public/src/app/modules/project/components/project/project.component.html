@@ -4,8 +4,8 @@
     </app-project-header>
     <mat-sidenav-container>
         <mat-sidenav #sidenav [mode]="'side'" [(opened)]="opened">
-            <p>Project Metrics: </p>
-            <p>Project Descriptions: {{project.project.description}}</p>
+            <h4>Project Metrics: </h4>
+            <h4>Project Descriptions: {{project.project.description}}</h4>
             <p><button mat-button (click)="sidenav.toggle()">hide</button></p>
         </mat-sidenav>
 
