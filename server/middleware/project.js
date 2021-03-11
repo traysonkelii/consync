@@ -5,7 +5,7 @@ module.exports = {};
 module.exports.getProjectById = async (req, res, next) => {
 	let error;
 	try {
-		let projectId = req.params.id;
+		let projectId = req.params.projectId;
 		let project = await getProjectById(projectId);
 		req.result = {project};
 	} catch (err) {
@@ -41,7 +41,7 @@ module.exports.createProject = async (req, res, next) => {
 module.exports.archiveProject = async (req, res, next) => {
 	let error;
 	try {
-		let projectId = req.params.id;
+		let projectId = req.params.projectId;
 		let project = await archiveProject(projectId);
 		req.result = project;
 	} catch (err) {

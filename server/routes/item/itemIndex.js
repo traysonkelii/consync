@@ -7,6 +7,9 @@ router.route('/:id')
 	.put(itemController.updateItem)
 	.delete(itemController.archiveItem)
 
+router.route('/:itemId/messages')
+	.get(itemController.getMessageByItemId);
+
 router.route('/')
 	.post(itemController.createItem)
 
