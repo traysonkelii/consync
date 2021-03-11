@@ -1,9 +1,15 @@
 const project = require('../../middleware/project');
 const item = require('../../middleware/item');
+const message = require('../../middleware/message');
 
 module.exports.getProject = [
 	project.getProjectById,
 	item.getItemsByProjectId,
+	project.return
+]
+
+module.exports.getMessagesForProject = [
+	message.getMessagesByProjectId,
 	project.return
 ]
 

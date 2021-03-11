@@ -1,9 +1,15 @@
 const item = require('../../middleware/item');
 const subItem = require('../../middleware/subItem');
+const message = require('../../middleware/message');
 
 module.exports.createItem = [
 	item.createItem,
 	subItem.createMainSubItem,
+	item.return
+]
+
+module.exports.getMessageByItemId = [
+	message.getMessagesByItemId,
 	item.return
 ]
 

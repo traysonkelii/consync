@@ -5,8 +5,44 @@ module.exports = {};
 module.exports.getMessagesBySubItemId = async (req, res, next) => {
 	let error;
 	try {
-		let subItemId = req.params.id;
-		let messages = await getMessagesBySubItemId(subItemId);
+		let subItemId = req.params.subItemId;
+		let messages = await getMessagesByParentId('subItemId', subItemId);
+		if (!req.result) {
+			req.result = { messages };
+		} else {
+			req.result.messages = messages;
+		}
+	}
+	catch (err) {
+		error = err;
+		error.status = 400;
+	}
+	next(error);
+};
+
+module.exports.getMessagesByProjectId = async (req, res, next) => {
+	let error;
+	try {
+		let projectId = req.params.projectId;
+		let messages = await getMessagesByParentId('projectId', projectId);
+		if (!req.result) {
+			req.result = { messages };
+		} else {
+			req.result.messages = messages;
+		}
+	}
+	catch (err) {
+		error = err;
+		error.status = 400;
+	}
+	next(error);
+};
+
+module.exports.getMessagesByItemId = async (req, res, next) => {
+	let error;
+	try {
+		let itemId = req.params.itemId;
+		let messages = await getMessagesByParentId('itemId', itemId);
 		if (!req.result) {
 			req.result = { messages };
 		} else {

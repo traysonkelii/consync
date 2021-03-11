@@ -5,7 +5,7 @@ module.exports = {};
 module.exports.getSubItemsByItemId = async (req, res, next) => {
 	let error;
 	try {
-		let itemId = req.params.id;
+		let itemId = req.params.itemId;
 		let subItems = await getSubItemsByItemId(itemId);
 		if(req.result) {
 			req.result.subItems = subItems;
@@ -49,7 +49,7 @@ module.exports.createMainSubItem = async(req, res, next) => {
 module.exports.getSubItemById = async (req, res, next) => {
 	let error;
 	try {
-		let subItemId = req.params.id;
+		let subItemId = req.params.subItemId;
 		let subItem = await getSubItemById(subItemId);
 		req.result = {subItem};
 	} catch (err) {
@@ -62,7 +62,7 @@ module.exports.getSubItemById = async (req, res, next) => {
 module.exports.updateSubItem = async (req, res, next) => {
 	let error;
 	try {
-		let subItemId = req.params.id;
+		let subItemId = req.params.subItemId;
 		let subItemUpdates = req.body;
 		let subItem = await updateSubItem(subItemId, subItemUpdates);
 		req.result = subItem;
@@ -76,7 +76,7 @@ module.exports.updateSubItem = async (req, res, next) => {
 module.exports.archiveSubItem = async (req, res, next) => {
 	let error;
 	try {
-		let subItemId = req.params.id;
+		let subItemId = req.params.subItemId;
 		let subItemUpdates = {status: "archived"};
 		let subItem = await updateSubItem(subItemId, subItemUpdates);
 		req.result = subItem;

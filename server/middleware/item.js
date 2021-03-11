@@ -24,7 +24,7 @@ module.exports.createItem = async(req, res, next) => {
 module.exports.getItemsByProjectId = async (req, res, next) => {
 	let error;
 	try {
-		let projectId = req.params.id;
+		let projectId = req.params.projectId;
 		let items = await getItemsByProjectId(projectId);
 		
 		if(!req.result){
@@ -43,7 +43,7 @@ module.exports.getItemsByProjectId = async (req, res, next) => {
 module.exports.getItemById = async (req, res, next) => {
 	let error;
 	try {
-		let itemId = req.params.id;
+		let itemId = req.params.itemId;
 		let item = await getItemById(itemId);
 		req.result = {item};
 	} catch (err) {
@@ -56,7 +56,7 @@ module.exports.getItemById = async (req, res, next) => {
 module.exports.updateItemById = async (req, res, next) => {
 	let error;
 	try{
-		let itemId = req.params.id;
+		let itemId = req.params.itemId;
 		let itemUpdates = req.body;
 		let item = await updateItemById(itemId, itemUpdates);
 		req.result = item;
@@ -70,7 +70,7 @@ module.exports.updateItemById = async (req, res, next) => {
 module.exports.archiveItem = async (req, res, next) => {
 	let error;
 	try{
-		let itemId = req.params.id;
+		let itemId = req.params.itemId;
 		let itemUpdates = {status: 'archived'};
 		let item = await updateItemById(itemId, itemUpdates);
 		req.result = item;
