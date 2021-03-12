@@ -240,4 +240,9 @@ databaseService.createThread = async (threadObj) => {
 	return thread;
 }
 
+databaseService.addParticipantsToThread = async (threadId, participants) => {
+	let thread = await Thread.findByIdAndUpdate(threadId, {$addToSet: {$each: participants}});
+	return thread;
+}
+
 module.exports = databaseService;

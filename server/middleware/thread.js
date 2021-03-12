@@ -1,4 +1,4 @@
-const { getThreadsBySubItemId, createThread, getThreadById, updateThread, getThreadsByThreadId } = require("../services/databaseService");
+const { getThreadsBySubItemId, createThread, getThreadById, updateThread, getThreadsByThreadId, addParticipantsToThread } = require("../services/databaseService");
 
 module.exports = {};
 
@@ -16,25 +16,28 @@ module.exports.createThread = async (req, res, next) => {
 	next(error);
 }
 
-module.exports.createThreadForNewMessage = async (req, res, next) => {
+module.exports.threadMessage = async (req, res, next) => {
 	let error;
 	try {
-		if(req.body.threadId){
-			return next();
-		}
+		let thread;
 		let participants = req.body.mentionedUserIds;
-		if(participants){
+		if (participants) {
 			participants.push(req.user._id);
+			participants = [...new Set(participants)];
 		} else {
 			participants = [req.user._id];
 		}
-		let threadObj = {
-			projectId: req.body.projectId,
-			itemId: req.body.itemId,
-			subItemId: req.body.subItemId,
-			partricipants
+		if (req.body.threadId) {
+			thread = await addParticipantsToThread(req.body.threadId, participants);
+		} else {
+			let threadObj = {
+				projectId: req.body.projectId,
+				itemId: req.body.itemId,
+				subItemId: req.body.subItemId,
+				partricipants
+			}
+			thread = await createThread(threadObj);
 		}
-		let thread = await createThread(threadObj);
 		req.body.threadId = thread._id;
 	} catch (err) {
 		error = err;
