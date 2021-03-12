@@ -22,11 +22,17 @@ module.exports.createThreadForNewMessage = async (req, res, next) => {
 		if(req.body.threadId){
 			return next();
 		}
+		let participants = req.body.mentionedUserIds;
+		if(participants){
+			participants.push(req.user._id);
+		} else {
+			participants = [req.user._id];
+		}
 		let threadObj = {
 			projectId: req.body.projectId,
 			itemId: req.body.itemId,
 			subItemId: req.body.subItemId,
-			partricipants: req.body.mentionedUserIds
+			partricipants
 		}
 		let thread = await createThread(threadObj);
 		req.body.threadId = thread._id;
