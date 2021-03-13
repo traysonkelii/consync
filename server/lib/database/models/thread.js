@@ -4,7 +4,7 @@ let ThreadSchema = mongoose.Schema(
 	{
 		projectId: {type: mongoose.Schema.Types.ObjectId, required: 'projectId is a required field', ref: 'Project'},
 		itemId: {type: mongoose.Schema.Types.ObjectId, required: 'itemId is a required field', ref: 'Item'},
-		subItemId: {type: mongoose.Schema.Types.ObjectId, ref: 'SubItem'},
+		channelId: {type: mongoose.Schema.Types.ObjectId, ref: 'Channel'},
 		partricipants: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}]
 	}, {
 	timestamps: true,

@@ -2,7 +2,7 @@ const Project = require('../lib/database/models/project');
 const User = require('../lib/database/models/user');
 const Role = require('../lib/database/models/role');
 const Item = require('../lib/database/models/item');
-const SubItem = require('../lib/database/models/subItem');
+const Channel = require('../lib/database/models/channel');
 const Message = require('../lib/database/models/message');
 const Task = require('../lib/database/models/task');
 const ObjectId = require('mongoose').Types.ObjectId;
@@ -113,13 +113,13 @@ databaseService.updateItemById = async (itemId, itemUpdates) => {
 	return item;
 }
 
-databaseService.getSubItemsByItemId = async (itemId) => {
-	let subItems = await SubItem.find({itemId: ObjectId(itemId), status: {$ne: "archvied"}}).populate('members');
-	return subItems;
+databaseService.getChannelsByItemId = async (itemId) => {
+	let channels = await Channel.find({itemId: ObjectId(itemId), status: {$ne: "archvied"}}).populate('members');
+	return channels;
 }
 
-databaseService.getMessagesBySubItemId = async (subItemId) => {
-	let messages = await Message.find({subItemId: ObjectId(subItemId), status: {$ne: "archvied"}}).populate('authorId');
+databaseService.getMessagesByChannelId = async (channelId) => {
+	let messages = await Message.find({channelId: ObjectId(channelId), status: {$ne: "archvied"}}).populate('authorId');
 	return messages;
 }
 
@@ -146,20 +146,20 @@ databaseService.getTaskById = async (taskId) => {
 	return task;
 }
 
-databaseService.getSubItemById = async (subItemId) => {
-	let subItem = await SubItem.findById(subItemId);
-	return subItem;
+databaseService.getChannelById = async (channelId) => {
+	let channel = await Channel.findById(channelId);
+	return channel;
 }
 
-databaseService.createSubItem = async (subItemObj) => {
-	const subItem = new SubItem(subItemObj);
-	await subItem.save();
-	return subItem;
+databaseService.createChannel = async (channelObj) => {
+	const channel = new Channel(channelObj);
+	await channel.save();
+	return channel;
 }
 
-databaseService.updateSubItem = async (subItemId, subItemUpdates) => {
-	let subItem = await SubItem.findByIdAndUpdate(subItemId, subItemUpdates);
-	return subItem;
+databaseService.updateChannel = async (channelId, channelUpdates) => {
+	let channel = await Channel.findByIdAndUpdate(channelId, channelUpdates);
+	return channel;
 }
 
 databaseService.createMessage = async (messageObj) => {

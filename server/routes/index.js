@@ -9,7 +9,7 @@ router.use('/item', require('./item/itemIndex'));
 router.use('/message', require('./message/messageIndex'));
 router.use('/project', require('./project/projectIndex'));
 router.use('/task', require('./task/taskIndex'));
-router.use('/subItem', require('./subItem/subItemIndex'));
+router.use('/channel', require('./channel/channelIndex'));
 router.use('/user', require('./user/userIndex'));
 
 

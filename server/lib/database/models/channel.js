@@ -1,6 +1,6 @@
 let mongoose = require('mongoose');
 
-let SubItemSchema = mongoose.Schema(
+let ChannelSchema = mongoose.Schema(
 	{
 		title: {type: String, required: 'title is a required field'},
 		itemId: {type: mongoose.Schema.Types.ObjectId, required: 'itemId is a required field', ref: 'Item'},
@@ -11,8 +11,9 @@ let SubItemSchema = mongoose.Schema(
 	}, {
 	timestamps: true,
 	versionKey: false, // removing mongoose versionkey because it prevents updating the document when you don't provIde a new version
-	minimize: false
+	minimize: false,
+	collection: 'channels'
 	}
 );
 
-module.exports = mongoose.model('SubItem', SubItemSchema);
+module.exports = mongoose.model('Channel', ChannelSchema);

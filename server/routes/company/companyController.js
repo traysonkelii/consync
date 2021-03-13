@@ -1,5 +1,4 @@
 const company = require('../../middleware/company');
-const subItem = require('../../middleware/subItem');
 
 module.exports.createCompany = [
 	company.createCompany,

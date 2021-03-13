@@ -1,10 +1,10 @@
 const item = require('../../middleware/item');
-const subItem = require('../../middleware/subItem');
+const channel = require('../../middleware/channel');
 const message = require('../../middleware/message');
 
 module.exports.createItem = [
 	item.createItem,
-	subItem.createMainSubItem,
+	channel.createMainChannel,
 	item.return
 ]
 
@@ -20,7 +20,7 @@ module.exports.updateItem = [
 
 module.exports.getItemById = [
 	item.getItemById,
-	subItem.getSubItemsByItemId,
+	channel.getChannelsByItemId,
 	item.return
 ]
 

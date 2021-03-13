@@ -1,4 +1,4 @@
-const { getThreadsBySubItemId, createThread, getThreadById, updateThread, getThreadsByThreadId, addParticipantsToThread } = require("../services/databaseService");
+const { getThreadsByChannelId, createThread, getThreadById, updateThread, getThreadsByThreadId, addParticipantsToThread } = require("../services/databaseService");
 
 module.exports = {};
 
@@ -33,7 +33,7 @@ module.exports.threadMessage = async (req, res, next) => {
 			let threadObj = {
 				projectId: req.body.projectId,
 				itemId: req.body.itemId,
-				subItemId: req.body.subItemId,
+				channelId: req.body.channelId,
 				partricipants
 			}
 			thread = await createThread(threadObj);
@@ -59,11 +59,11 @@ module.exports.getThreadById = async (req, res, next) => {
 	next(error);
 }
 
-module.exports.getThreadsBySubItemId = async (req, res, next) => {
+module.exports.getThreadsByChannelId = async (req, res, next) => {
 	let error;
 	try {
 		let threadId = req.params.id;
-		let threads = await getThreadsBySubItemId(threadId);
+		let threads = await getThreadsByChannelId(threadId);
 		req.result.threads = threads;
 	} catch (err) {
 		error = err;

@@ -1,12 +1,12 @@
-const { getMessagesBySubItemId, createMessage, getMessageById, updateMessage, getMessagesByParentId } = require("../services/databaseService");
+const { getMessagesByChannelId, createMessage, getMessageById, updateMessage, getMessagesByParentId } = require("../services/databaseService");
 
 module.exports = {};
 
-module.exports.getMessagesBySubItemId = async (req, res, next) => {
+module.exports.getMessagesByChannelId = async (req, res, next) => {
 	let error;
 	try {
-		let subItemId = req.params.subItemId;
-		let messages = await getMessagesByParentId('subItemId', subItemId);
+		let channelId = req.params.channelId;
+		let messages = await getMessagesByParentId('channelId', channelId);
 		if (!req.result) {
 			req.result = { messages };
 		} else {
