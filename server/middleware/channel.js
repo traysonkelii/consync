@@ -6,9 +6,7 @@ module.exports.getChannelsByItemId = async (req, res, next) => {
 	let error;
 	try {
 		let itemId = req.params.itemId;
-		console.log('itemId', itemId);
 		let channels = await getChannelsByItemId(itemId);
-		console.log(channels);
 		if(req.result) {
 			req.result.channels = channels;
 		} else {
@@ -52,7 +50,6 @@ module.exports.getChannelById = async (req, res, next) => {
 	let error;
 	try {
 		let channelId = req.params.channelId;
-		console.log(channelId);
 		let channel = await getChannelById(channelId);
 		req.result = {channel};
 	} catch (err) {
