@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const itemController = require('./itemController');
 
-router.route('/:id')
+router.route('/:itemId')
 	.get(itemController.getItemById)
 	.put(itemController.updateItem)
 	.delete(itemController.archiveItem)
