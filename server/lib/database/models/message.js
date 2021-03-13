@@ -6,7 +6,7 @@ let MessageSchema = mongoose.Schema(
 		threadId: {type: mongoose.Schema.Types.ObjectId, required: 'authorId is a required field', ref: 'Thread'},
 		projectId: {type: mongoose.Schema.Types.ObjectId, required: 'projectId is a required field', ref: 'Project'},
 		itemId: {type: mongoose.Schema.Types.ObjectId, required: 'itemId is a required field', ref: 'Item'},
-		subItemId: {type: mongoose.Schema.Types.ObjectId, ref: 'SubItem'},
+		channelId: {type: mongoose.Schema.Types.ObjectId, ref: 'Channel'},
 		body: {type: String, required: 'body is a required field'},
 		type: {type: String, enum: ['commitment', 'info'], default: 'info'},
 		mentionedUserIds: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
