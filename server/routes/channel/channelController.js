@@ -4,6 +4,7 @@ const message = require('../../middleware/message');
 module.exports.getChannel = [
 	channel.getChannelById,
 	message.getMessagesByChannelId,
+	message.groupMessagesByThreadId,
 	channel.return
 ]
 
