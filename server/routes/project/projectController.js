@@ -10,6 +10,7 @@ module.exports.getProject = [
 
 module.exports.getMessagesForProject = [
 	message.getMessagesByProjectId,
+	message.groupMessagesByThreadId,
 	project.return
 ]
 

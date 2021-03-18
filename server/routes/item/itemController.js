@@ -10,6 +10,7 @@ module.exports.createItem = [
 
 module.exports.getMessageByItemId = [
 	message.getMessagesByItemId,
+	message.groupMessagesByThreadId,
 	item.return
 ]
 

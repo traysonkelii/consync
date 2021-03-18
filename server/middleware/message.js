@@ -20,6 +20,21 @@ module.exports.getMessagesByChannelId = async (req, res, next) => {
 	next(error);
 };
 
+module.exports.groupMessagesByThreadId = (req, res, next) => {
+	let messages = req.result.messages;
+	let groupedMessages = {};
+	messages.forEach(message => {
+		console.log(message);
+		if(groupedMessages[message.threadId]) {
+			groupedMessages[message.threadId].push(message);
+		} else {
+			groupedMessages[message.threadId] = [message];
+		}
+	});
+	req.result.messages = groupedMessages;
+	next();
+};
+
 module.exports.getMessagesByProjectId = async (req, res, next) => {
 	let error;
 	try {
