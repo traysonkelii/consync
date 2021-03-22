@@ -2,8 +2,8 @@
     <button mat-mini-fab color="primary" (click)="backClick()">
         <mat-icon aria-hidden="false" aria-label="Example home icon">keyboard_arrow_left</mat-icon>
     </button>
-    <div *ngIf="activeMessage">
-        <div *ngFor="let m of activeMessage.messages">
+    <div *ngIf="activeMessage" class="message-holder" #content>
+        <div *ngFor="let m of activeMessage.messages" #messages>
             {{ m.body}}
             written by <span *ngIf="m.authorId">{{ m.authorId.firstName }}</span>
             <!-- <p>{{ m | json}}</p> -->
@@ -11,7 +11,7 @@
     </div>
     <div>
         <div class="text-area-holder">
-            <textarea rows="8" class="text-area" [(ngModel)]="messageToSend"></textarea>
+            <textarea rows="8" class="text-area" [(ngModel)]="messageToSend" (keyup.enter)="handleReply()"></textarea>
             <button (click)="handleReply()">reply</button>
         </div>
     </div>

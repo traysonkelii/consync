@@ -57,7 +57,10 @@ export class ProjectEffects {
             ofType(ProjectActions.createNewMessage),
             mergeMap((messageRequest) => this.messageService.createMessage(messageRequest)
                 .pipe(
-                    map((message: any) => ProjectActions.createNewItemSuccess(message))
+                    map((message: any) =>{ 
+                        console.log(message);
+                        return ProjectActions.createNewMessageSuccess(message)
+                    })
                 )),
             )
     });

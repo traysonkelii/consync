@@ -1,3 +1,4 @@
+import { state } from "@angular/animations";
 import { createFeatureSelector, createReducer, createSelector, on } from "@ngrx/store"
 import { ItemService } from "@services/item.service";
 import * as ProjectAction from './project.action';
@@ -43,6 +44,12 @@ export const projectReducer = createReducer<ProjectState>(
         return {
             ...state,
             messages: action
+        }
+    }),
+    on(ProjectAction.createNewMessageSuccess, (state, action): ProjectState => {
+        state.messages.messages.push(action);
+        return {
+            ...state,
         }
     })
 );

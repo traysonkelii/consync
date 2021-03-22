@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, ViewChildren, ViewChild, QueryList, ElementRef } from '@angular/core';
 import { getMainChannel, getMessages, ProjectState } from '@modules/project/state/project.reducer';
 import { select, Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
@@ -14,6 +14,10 @@ export class ItemDetailViewComponent implements OnInit {
 
   @Input() item: any;
   @Output() back = new EventEmitter();
+  @ViewChildren('messages')
+  messages!: QueryList<any>;
+  @ViewChild('content')
+  content!: ElementRef;
 
   mainThread: any;
   activeMessage: any;
@@ -38,6 +42,17 @@ export class ItemDetailViewComponent implements OnInit {
 
     this.store.dispatch(ProjectActions.getMessageForChannel(this.mainThread[0]));
 
+  }
+
+  ngAfterViewInit() {
+    this.scrollToBottom();
+    this.messages.changes.subscribe(this.scrollToBottom);
+  }
+
+  scrollToBottom = () => {
+    try {
+      this.content.nativeElement.scrollTop = this.content.nativeElement.scrollHeight;
+    } catch (err) {}
   }
 
   backClick() {
