@@ -23,7 +23,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 import { ProjectTableComponent } from './components/project-table/project-table.component';
-import { ItemModule } from '@modules/item/item.module';
+import { ItemDetailViewComponent } from './components/item-detail-view/item-detail-view.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,7 @@ import { ItemModule } from '@modules/item/item.module';
     ProjectHeaderComponent, 
     PebbleBoardComponent, 
     NewItemModalComponent, 
-    ProjectTableComponent,
+    ProjectTableComponent, ItemDetailViewComponent,
   ],
   imports: [
     CommonModule,

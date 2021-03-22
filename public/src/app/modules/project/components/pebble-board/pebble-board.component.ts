@@ -15,7 +15,6 @@ export class PebbleBoardComponent implements OnInit {
   }
 
   goToItem(item:any) {
-    console.log(item);
     this.route.navigate(['/item',item._id])
   }
 

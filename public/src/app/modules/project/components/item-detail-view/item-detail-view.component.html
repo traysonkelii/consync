@@ -1,0 +1,31 @@
+<div *ngIf="item">
+    <button mat-mini-fab color="primary" (click)="backClick()">
+        <mat-icon aria-hidden="false" aria-label="Example home icon">keyboard_arrow_left</mat-icon>
+    </button>
+    <div *ngIf="activeMessage">
+        <div *ngFor="let m of activeMessage.messages">
+            {{ m.body}}
+            written by <span *ngIf="m.authorId">{{ m.authorId.firstName }}</span>
+            <!-- <p>{{ m | json}}</p> -->
+        </div>
+    </div>
+    <div>
+        <div class="text-area-holder">
+            <textarea rows="8" class="text-area" [(ngModel)]="messageToSend"></textarea>
+            <button (click)="handleReply()">reply</button>
+        </div>
+    </div>
+    <div *ngFor="let m of mainThread">
+        <h2>Left div members</h2>
+        <ul *ngFor="let member of m.members">
+            <li>{{ member.firstName }}</li>
+        </ul>
+        <div>
+            <p>{{m._id}}</p>
+        </div>
+    </div>
+    <div>
+        <h2>Channels</h2>
+    </div>
+    <p>{{item | json}}</p>
+</div>

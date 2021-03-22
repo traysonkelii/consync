@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { ItemService } from "@services/item.service";
+import { MessageService } from "@services/message.service";
 import { ProjectService } from "@services/project.service";
 import { map, mergeMap } from "rxjs/operators";
 import * as ProjectActions from './project.action';
@@ -11,6 +12,7 @@ export class ProjectEffects {
         private actions$: Actions,
         private projectService: ProjectService,
         private itemService: ItemService,
+        private messageService: MessageService,
     ) { }
 
     loadProject$ = createEffect(() => {
@@ -29,5 +31,34 @@ export class ProjectEffects {
                 map((item: any) => ProjectActions.createNewItemSuccess(item)),
             ))
         );
+    });
+
+    itemDetail$ = createEffect(() => {
+        return this.actions$.pipe(
+            ofType(ProjectActions.getItemDetail),
+            mergeMap((itemId) => this.itemService.getItem(itemId).pipe(
+                map((item: any) => ProjectActions.getItemDetailSuccess(item)),
+            ))
+        )
+    });
+
+    messageByChannel = createEffect(() => {
+        return this.actions$.pipe(
+            ofType(ProjectActions.getMessageForChannel),
+            mergeMap((channelRequest) => this.messageService.getMessageByChannelId(channelRequest)
+                .pipe(
+                    map((messages: any) => ProjectActions.getMessageForChannelSuccess(messages))
+                )),
+        )
+    });
+
+    createMessage = createEffect(() => {
+        return this.actions$.pipe(
+            ofType(ProjectActions.createNewMessage),
+            mergeMap((messageRequest) => this.messageService.createMessage(messageRequest)
+                .pipe(
+                    map((message: any) => ProjectActions.createNewItemSuccess(message))
+                )),
+            )
     });
 }
