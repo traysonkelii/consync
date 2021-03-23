@@ -17,11 +17,11 @@ export const projectReducer = createReducer<ProjectState>(
         }
     }),
     on(ProjectAction.createNewItemSuccess, (state, action): ProjectState => {
-        // state.project.items.push(action);
         return {
             ...state,
             project: {
-                items: state.project.items.push(action)
+                ...state.project,
+                items: [...state.project.items, action.item]
             }
         }
     })
