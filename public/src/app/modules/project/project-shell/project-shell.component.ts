@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { getSelectedProject, ProjectState } from '../state/project.reducer';
+import { getItemDetail, getSelectedProject, ProjectState } from '../state/project.reducer';
 import * as ProjectActions from './../state/project.action';
 
 @Component({
@@ -17,6 +17,7 @@ export class ProjectShellComponent implements OnInit {
 
   id!: string | null;
   project$: any;
+  itemDetail$: any;
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
@@ -25,6 +26,7 @@ export class ProjectShellComponent implements OnInit {
         { projectId: this.id }
       ));
       this.project$ = this.store.select(getSelectedProject);
+      this.itemDetail$ = this.store.select(getItemDetail);
     }
   }
 
@@ -32,4 +34,7 @@ export class ProjectShellComponent implements OnInit {
     this.store.dispatch(ProjectActions.createNewItem(event));
   }
 
+  selectItem(itemId: string) {
+    this.store.dispatch(ProjectActions.getItemDetail({ itemId }));
+  }
 }

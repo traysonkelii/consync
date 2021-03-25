@@ -34,7 +34,7 @@ module.exports.threadMessage = async (req, res, next) => {
 				projectId: req.body.projectId,
 				itemId: req.body.itemId,
 				channelId: req.body.channelId,
-				partricipants
+				participants
 			}
 			thread = await createThread(threadObj);
 		}

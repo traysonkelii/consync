@@ -75,7 +75,7 @@ module.exports.createMessage = async (req, res, next) => {
 	let error;
 	try {
 		let messageObj = req.body;
-		messageObj.authorId = req.user._id;
+		messageObj.authorId = req.user.data ? req.user.data._id : req.user._id;
 		messageObj.unreadBy = req.body.mentionedUserIds;
 		let message = await createMessage(messageObj);
 		req.result = message;

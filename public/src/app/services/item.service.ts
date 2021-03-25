@@ -14,7 +14,7 @@ export class ItemService {
     return this.http.post(`${environment.baseUrl}/item/`, newItemRequest);
   }
 
-  getItem(itemId: any): Observable<any> {
-    return this.http.get(`${environment.baseUrl}/item/${itemId}`);
+  getItem(itemRequest: any): Observable<any> {
+    return this.http.get(`${environment.baseUrl}/item/${itemRequest.itemId}`);
   }
 }

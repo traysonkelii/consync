@@ -3,7 +3,7 @@ let mongoose = require('mongoose');
 let MessageSchema = mongoose.Schema(
 	{
 		authorId: {type: mongoose.Schema.Types.ObjectId, required: 'authorId is a required field', ref: 'User'},
-		threadId: {type: mongoose.Schema.Types.ObjectId, required: 'authorId is a required field', ref: 'Thread'},
+		threadId: {type: mongoose.Schema.Types.ObjectId, required: 'threadId is a required field', ref: 'Thread'},
 		projectId: {type: mongoose.Schema.Types.ObjectId, required: 'projectId is a required field', ref: 'Project'},
 		itemId: {type: mongoose.Schema.Types.ObjectId, required: 'itemId is a required field', ref: 'Item'},
 		channelId: {type: mongoose.Schema.Types.ObjectId, ref: 'Channel'},

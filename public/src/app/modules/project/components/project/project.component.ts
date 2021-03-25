@@ -18,7 +18,9 @@ export class ProjectComponent implements OnInit {
   constructor(public dialog: MatDialog) { }
 
   @Input() project: any;
+  @Input() itemDetail: any;
   @Output() emitNewItem = new EventEmitter();
+  @Output() emitItemSelected = new EventEmitter();
 
   newItemTitle: string = '';
   newItemDesc: string = '';
@@ -27,9 +29,6 @@ export class ProjectComponent implements OnInit {
 
   ngOnInit(): void { }
   opened: boolean = true;
-
-  handleCreateItem(event: any) {
-  }
 
   handleTabChange(event: any) {
     this.currentTab = event;
@@ -59,5 +58,9 @@ export class ProjectComponent implements OnInit {
         this.emitNewItem.emit(newItemRequest)
       }
     });
+  }
+
+  itemSelected(itemId: string) {
+    this.emitItemSelected.emit(itemId);
   }
 }

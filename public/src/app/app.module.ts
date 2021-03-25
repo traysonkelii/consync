@@ -31,7 +31,12 @@ import { MatInputModule } from '@angular/material/input';
     BrowserAnimationsModule,
     HeaderModule,
     HttpClientModule,
-    StoreModule.forRoot({'root': rootReducer}, {}),
+    StoreModule.forRoot({ 'root': rootReducer }, {
+      runtimeChecks: {
+        strictStateImmutability: false,
+        strictActionImmutability: false,
+      }
+    }),
     StoreDevtoolsModule.instrument({
       name: 'Consync',
       maxAge: 25,

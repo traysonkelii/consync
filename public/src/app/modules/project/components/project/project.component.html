@@ -1,6 +1,5 @@
 <div *ngIf="project">
-    <app-project-header (newItem)="handleCreateItem($event)" [projectTitle]="project.project.title"
-        (tabSelected)="handleTabChange($event)">
+    <app-project-header [projectTitle]="project.project.title" (tabSelected)="handleTabChange($event)">
     </app-project-header>
     <mat-sidenav-container>
         <mat-sidenav #sidenav [mode]="'side'" [(opened)]="opened">
@@ -11,17 +10,16 @@
 
         <mat-sidenav-content>
             <p *ngIf="!opened"><button mat-button (click)="sidenav.toggle()">Show Sidebar</button></p>
-            <!-- <app-pebble-board [items]="project.items"></app-pebble-board> -->
-            <app-project-table *ngIf="currentTab === 'item'" [tableData]="project.items"></app-project-table>
+            <div *ngIf="currentTab === 'item'">
+                <app-project-table *ngIf="!itemDetail" [tableData]="project.items" (selectedItem)="itemSelected($event)">
+                </app-project-table>
+                <div *ngIf="itemDetail">
+                    <app-item-detail-view [item]="itemDetail"></app-item-detail-view>
+                </div>
+            </div>
             <div *ngIf="currentTab === 'people'"> people table</div>
             <div *ngIf="currentTab === 'commitments'">commitment</div>
         </mat-sidenav-content>
     </mat-sidenav-container>
     <button mat-raised-button color="primary" (click)="createNewItem()">New Item</button>
 </div>
-
-<!-- <div style="text-align: center; margin-top: 2%;" *ngIf="project">
-    <p>Title: {{project.project.title}}</p>
-    <p>Description: {{project.project.description}}</p>
-    <p>{{project.items | json}}</p>
-</div> -->
